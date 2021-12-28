@@ -35,3 +35,14 @@ public class MaximumSubarraySum {
 		System.out.println("Maximum SubArray Sum: "+ans );
 	}
 }
+
+/*
+Enter the number:
+4
+enter the number of elements in the array:
+-1
+4
+7
+2
+Maximum SubArray Sum: 13
+*/
