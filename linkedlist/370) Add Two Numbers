@@ -1,0 +1,128 @@
+class Solution {
+    public ListNode addTwoNumbers(ListNode list1, ListNode list2) {
+        
+        ListNode temp=new ListNode(-1, null);
+        ListNode ans=temp;
+
+        int carry = 0;
+
+        while(list1!=null && list2!=null){
+            int sum=list1.val + list2.val + carry;
+            if(sum>9){
+                sum%=10;
+                carry=1;
+            }
+            else{
+                carry=0;
+            }
+            ListNode node=new ListNode(sum, null);
+            temp.next=node;
+            temp=temp.next;
+
+            list1=list1.next;
+            list2=list2.next;
+        }
+
+        while(list1!=null){
+            int sum=list1.val + carry;
+            if(sum>9){
+                sum%=10;
+                carry=1;
+            }
+            else{
+                carry=0;
+            }
+            ListNode node=new ListNode(sum, null);
+            temp.next=node;
+            temp=temp.next;
+
+             list1=list1.next;
+        }
+
+
+        while(list2!=null){
+            int sum=list2.val + carry;
+            if(sum>9){
+                sum%=10;
+                carry=1;
+            }
+            else{
+                carry=0;
+            }
+            ListNode node=new ListNode(sum, null);
+            temp.next=node;
+            temp=temp.next;
+
+            list2=list2.next;
+        }
+
+        if(carry==1){
+            ListNode node=new ListNode(1, null);
+            temp.next=node;
+            temp=temp.next;
+        }
+
+        return ans.next;
+    }
+}
+-------------------------------------------------------------------------------------------------------------------
+class Solution {
+    public ListNode addTwoNumbers(ListNode list1, ListNode list2) {
+       return helper(list1,list2,0);
+    }
+    public ListNode helper(ListNode list1, ListNode list2,int carry){
+    if(list1==null && list2!=null){
+        int sum = list2.val+carry;
+        if(sum>9){
+            carry=1;
+            sum%=10;
+        }
+        else{
+            carry=0;
+        }
+        list2.val=sum;
+        list2.next=helper(null,list2.next,carry);
+        return list2;
+    }
+    if(list2==null && list1!=null){
+        int sum =list1.val+carry;
+        if(sum>9){
+            carry=1;
+            sum%=10;
+        }
+        else{
+            carry=0;
+        }
+        list1.val=sum;
+        list1.next=helper(list1.next,null,carry);
+        return list1;
+    }
+    if(list1==null){
+        if(carry==1){
+            ListNode temp=new ListNode(1,null);
+            return temp;
+        }
+        return list2;
+    }
+    if(list2==null){
+        if(carry==1){
+            ListNode temp=new ListNode(1,null);
+            return temp;
+        }
+        return list1;
+    }
+    else{
+        int sum = list1.val+list2.val+carry;
+        if(sum>9){
+            carry=1;
+            sum%=10;
+        }
+        else{
+            carry=0;
+        }
+        list2.val=sum;
+        list2.next=helper(list1.next,list2.next,carry);
+        return list2;
+    }
+  }
+}
