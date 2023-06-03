@@ -1,0 +1,46 @@
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode first=null;
+        if(lists.length==0)
+            return first;
+        first=lists[0];
+        for(int i=1;i<lists.length;i++){
+            ListNode second=lists[i];
+            first=merge(first,second);
+        }
+        return first;
+    }
+    public ListNode merge(ListNode first,ListNode second){
+        //System.out.println("In fun");
+
+        ListNode ans=new ListNode(-1);
+        ListNode answer=ans;
+
+        //System.out.println(first.val+" "+second.val);
+
+        while(first!=null && second!=null){
+            if(first.val<=second.val){
+                //System.out.println("In 1");
+                ans.next=first;
+                first=first.next;
+                ans=ans.next;
+                ans.next=null;
+            }
+            else{
+                //System.out.println("In 2");
+                ans.next=second;
+                second=second.next;
+                ans=ans.next;
+                ans.next=null;
+            }
+        }
+
+        if(first!=null)
+            ans.next=first;
+
+        if(second!=null)
+            ans.next=second;
+
+        return answer.next;
+    }
+}
