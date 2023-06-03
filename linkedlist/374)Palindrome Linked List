@@ -1,0 +1,61 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+
+        if(head==null || head.next==null)
+            return true;
+
+        ListNode slow=head;
+        ListNode fast=head.next;
+
+        while(fast !=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+
+        ListNode start=slow.next;
+        slow.next=null;
+
+        ListNode reversed = reverse(start);
+
+        while(reversed!=null){
+            if(head.val!=reversed.val)
+                return false;
+            head=head.next;
+            reversed=reversed.next;
+        }
+
+        return true;
+    }
+    public ListNode reverse(ListNode start){
+        ListNode prev=null;
+        ListNode curr=start;
+
+        while(curr!=null){
+            ListNode next = curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        return prev;
+    }
+}
+---------------------------------------------------------------------------------------------------------------
+class Solution {
+    ListNode start;
+    public boolean isPalindrome(ListNode head) {
+        start = head;
+        return helper(head);
+    }
+    public boolean helper(ListNode curr){
+        if(curr==null)
+            return true;
+        boolean value = helper(curr.next);
+        if(value==false)
+            return false;
+        if(curr.val != start.val)
+            return false;
+        start=start.next;
+        return true;
+    }
+}
