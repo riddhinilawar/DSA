@@ -1,0 +1,61 @@
+Recursive:
+
+class Solution {
+   public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        if(l1.val < l2.val){
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        } else{
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Iterative:
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode temp=new ListNode(-1, null);
+        ListNode ans=temp;
+
+        while(list1!=null && list2!=null){
+            if(list1.val < list2.val){
+                temp.next=list1;
+                ListNode t =list1.next;
+                list1.next=null;
+                list1=t;
+                temp=temp.next;
+            }
+            else{
+                temp.next=list2;
+                ListNode t =list2.next;
+                list2.next=null;
+                list2=t;
+                temp=temp.next;
+            }
+        }
+
+        while(list1!=null){
+            temp.next=list1;
+            ListNode t =list1.next;
+            list1.next=null;
+            list1=t;
+            temp=temp.next;
+        }
+
+        while(list2!=null){
+            temp.next=list2;
+            ListNode t =list2.next;
+            list2.next=null;
+            list2=t;
+            temp=temp.next;
+        }
+
+        return ans.next;
+    }
+}
