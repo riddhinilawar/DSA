@@ -1,0 +1,45 @@
+class Solution {
+    public ListNode partition(ListNode head, int x) {
+        if(head==null)return head;
+
+        ListNode before=null;
+        ListNode after=null;
+        ListNode beforehead=null;
+        ListNode afterhead=null;
+        ListNode curr=head;
+        while(curr!=null){
+            if(curr.val<x){
+                if(before==null){
+                    before=curr;
+                    beforehead=curr;
+                    curr=curr.next;
+                    before.next=null;
+                }
+                else{
+                    before.next=curr;
+                    curr=curr.next;
+                    before=before.next;
+                    before.next=null;
+                }
+            }
+            else{
+                if(after==null){
+                    after=curr;
+                    afterhead=curr;
+                    curr=curr.next;
+                    after.next=null;
+                }
+                else{
+                    after.next=curr;
+                    curr=curr.next;
+                    after=after.next;
+                    after.next=null;
+                }
+            }
+            
+        }
+        if(before==null)return afterhead;
+        before.next=afterhead;
+        return beforehead;
+    }
+}
