@@ -1,0 +1,44 @@
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        //checking if head is null
+        if(head==null || head.next==null)
+            return head;
+
+        //counting the total nodes in SLL
+        int count=0;
+        ListNode temp=head;
+        while(temp!=null){
+            temp=temp.next;
+            count++;
+        }
+
+        //checking the mod for k returning the same SLL if k is 0
+        if(k>count)
+            k=k%count;
+        if(k==0)
+            return head;
+
+        //creating a slow and fast pointer - follow the logic of deleting the nth node from last
+        ListNode slow=head;
+        ListNode fast=head;
+
+        for(int i=0;i<k;i++)
+            fast=fast.next;
+
+        //exception: if fast points to null return original SLL
+        if(fast==null)
+            return head;
+
+        while(fast.next!=null){
+            slow=slow.next;
+            fast=fast.next;
+        }
+
+        //detach the SLL and create the new one
+        ListNode newhead=slow.next;
+        slow.next=null;
+        fast.next=head;
+
+        return newhead;
+    }
+}
