@@ -1,0 +1,45 @@
+class Solution {
+    int cnt=0;
+    public int[] nextLargerNodes(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        ListNode rev=reversed(head);
+        int[] ans=new int[cnt];
+
+        int idx=cnt-1;
+        while(rev!=null){
+            if(stack.isEmpty()){
+                ans[idx--]=0;
+                stack.push(rev.val);
+            }
+            else if(stack.peek()>rev.val){
+                ans[idx--]=stack.peek();
+                stack.push(rev.val);
+            }
+            else{
+                while(!stack.isEmpty() && stack.peek()<=rev.val)
+                    stack.pop();
+
+                if(stack.isEmpty())
+                    ans[idx--]=0;
+                else    
+                    ans[idx--]=stack.peek();
+
+                stack.push(rev.val);
+            }
+            rev=rev.next;
+        } 
+
+        return ans;
+    }
+    public ListNode reversed(ListNode curr){
+        ListNode prev=null;
+        while(curr!=null){
+            cnt++;
+            ListNode next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}
