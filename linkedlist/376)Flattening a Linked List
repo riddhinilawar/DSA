@@ -1,0 +1,39 @@
+class GfG
+{
+    Node flatten(Node root)
+    {    
+	    if(root==null || root.next==null)
+	        return root;
+	        
+	    Node prev=root;
+	    root=root.next;
+	    prev.next=null;
+	    
+	    Node merged=null;
+	    
+	    while(root!=null){
+	        Node curr=root;
+	        root=root.next;
+	        curr.next=null;
+	        
+	        merged = merge(prev,curr);
+	        prev=merged;
+	    }
+	    return merged;
+    }
+    Node merge(Node list1,Node list2){
+        if(list1==null)
+            return list2;
+        if(list2==null)
+            return list1;
+        if(list1.data <= list2.data){
+            list1.bottom=merge(list1.bottom,list2);
+            return list1;
+        }
+        else{
+            list2.bottom=merge(list1,list2.bottom);
+            return list2;
+        }
+    }
+}
+
