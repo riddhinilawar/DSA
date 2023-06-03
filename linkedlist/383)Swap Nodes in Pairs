@@ -1,0 +1,45 @@
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+       int k=2;
+        if(k<=1)return head;
+        ListNode answer = new ListNode(-1);
+        ListNode temporary = answer;
+
+        while(head!=null){
+            ListNode start=head;
+            for(int i=0;i<k-1;i++){
+                if(head.next==null){
+                    temporary.next=start;
+                    return answer.next;
+                }
+                head=head.next;
+            }
+            ListNode end=head;
+            if(head!=null)head=head.next;
+            end.next=null;
+
+            ListNode reversed = reverse(start);
+          
+
+            temporary.next=reversed;
+            while(temporary.next!=null){
+                temporary=temporary.next;
+            }
+            
+        }
+        return answer.next;
+    }
+    public ListNode reverse(ListNode start){
+        ListNode prev=null;
+        ListNode curr=start;
+
+        while(curr!=null){
+            ListNode next = curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        return prev;
+    }
+}
