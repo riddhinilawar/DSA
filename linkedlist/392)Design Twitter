@@ -1,0 +1,44 @@
+class Twitter {
+
+    int curr_time=0;
+    HashMap<Integer,HashSet<Integer>> friends;
+    PriorityQueue<int[]> timeline;
+
+    public Twitter() {
+        friends=new HashMap<>();
+        timeline=new PriorityQueue<>((a,b)->b[0]-a[0]);
+        curr_time=0;
+    }
+    
+    public void postTweet(int userId, int tweetId) {
+        curr_time++;
+        timeline.add(new int[]{curr_time,tweetId,userId});
+    }
+    
+    public List<Integer> getNewsFeed(int userId) {
+        List<Integer> ans = new ArrayList<>();
+        PriorityQueue<int[]> usertimeline=new PriorityQueue<>(timeline);
+        int count=0;
+        while(!usertimeline.isEmpty() && count<10){
+            int[] topTweet= usertimeline.remove();
+            if(topTweet[2]==userId || (friends.get(userId)!=null && friends.get(userId).contains(topTweet[2]))){
+                ans.add(topTweet[1]);
+                count++;
+            }
+        }
+        return ans;
+    }
+    
+    public void follow(int followerId, int followeeId) {
+        if(friends.get(followerId)==null)
+            friends.put(followerId,new HashSet<>());
+        friends.get(followerId).add(followeeId);
+    }
+    
+    public void unfollow(int followerId, int followeeId) {
+        if(friends.get(followerId)==null)
+            friends.put(followerId,new HashSet<>());
+        if(friends.get(followerId).contains(followeeId))
+            friends.get(followerId).remove(followeeId);
+    }
+}
