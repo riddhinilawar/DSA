@@ -1,0 +1,65 @@
+class Solution
+{
+    Node compute(Node head)
+    {
+        
+        if(head.next==null)
+        {
+            return head;
+        }
+        head=reverse(head);
+        
+        int temp=head.data;
+        
+        Node curr=head.next;
+        Node prev=head;
+        while(curr!=null)
+        {
+            if(curr.data>=temp)
+            {
+                //System.out.println(curr.data+" "+prev.data+" in 1 " +temp);
+                temp=curr.data;
+                prev.next=curr;
+                prev=prev.next;
+                curr=curr.next;
+                //System.out.println(curr.data+" "+prev.data+" in 1.1 " +temp);
+            }
+            else
+            {
+                //System.out.println(curr.data+" "+prev.data+" in 2 " +temp);
+                curr=curr.next;
+                
+                if(curr==null)
+                {
+                    prev.next=null;
+                }
+            }
+        }
+        
+        head=reverse(head);
+        
+        if(head.next!=null)
+        {
+            if(head.data<head.next.data)
+            {
+                head=head.next;
+            }
+        }
+        
+        return head;
+    }
+    Node reverse(Node head)
+    {
+        Node curr=head;
+        Node prev=null;
+        
+        while(curr!=null)
+        {
+            Node temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
+    }
+}
