@@ -1,0 +1,175 @@
+public class CircularLinkedList {
+	Node start=null;
+	Node temp=null;
+	class Node
+	{
+		int data;
+		Node next;
+		Node(int data)
+		{
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public void add(int data)
+	{
+		Node node=new Node(data);
+		if(start==null)
+		{
+			start=node;
+			start.next=node;
+		}
+		else
+		{
+			temp=start;
+			while(temp.next!=start)
+			{
+				temp=temp.next;
+			}
+			temp.next=node;
+			node.next=start;
+		}
+	}
+	public void add1(int data,int pos)
+	{
+		int flag=0;
+		Node node=new Node(data);
+		if(pos==1&&start==null)
+		{
+			start=node;
+			start.next=node;
+		}
+		else if(pos==1)
+		{
+			temp=start;
+			while(temp.next!=start)
+				temp=temp.next;
+			
+			temp.next=node;
+			node.next=start;
+			start=node;			
+		}
+		else if(this.size()==pos-1)
+		{
+			
+				temp.next=node;
+				node.next=start;
+			
+		}
+		else
+		{
+			try
+			{
+				temp=start;
+				for(int i=1;i<pos-1;i++)
+				{
+					temp=temp.next;
+					if(temp.next==start)
+						{
+							
+							System.out.println("position not found");
+							flag=1;
+							break;
+						}
+					
+				}
+				
+				if(flag==0)
+				{
+				Node temp1=temp.next;
+				temp.next=node;
+				node.next=temp1;
+				}
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println("Positions not found");
+			}
+		}
+	}
+	public void isempty()
+	{
+		if(start==null)
+			System.out.println("list is empty");
+		else
+			System.out.println("list is not empty");
+	}
+	public void delete(int pos)
+	{
+		if (pos==1)
+		{
+			temp=start.next;
+			while(temp.next!=start)
+			{
+				temp=temp.next;
+			}
+			start=start.next;
+			temp.next=start;
+		}
+		else if(this.size()==pos)
+		{
+			temp=start.next;
+			while(temp.next.next!=start)
+			{
+				temp=temp.next;
+			}
+			temp.next=start;
+		}
+		else if(pos>this.size())
+			System.out.println("position not found");
+		else
+		{
+			
+				temp=start;
+				for(int i=1;i<pos-1;i++)
+				{
+					temp=temp.next;
+				}
+				Node temp1=temp.next;
+				temp.next=temp1.next;
+			
+		}
+	}
+	public void display()
+	{
+		temp=start;
+		while(temp.next!=start)
+		{
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+		}
+		System.out.print(temp.data+" ");
+		System.out.println();
+	}
+	public int size()
+	{
+		temp=start;
+		int count=1;
+		while(temp.next!=start)
+		{
+			count++;
+			temp=temp.next;
+		}
+		return count;
+	}
+	public static void main(String args[])
+	{
+		CircularLinkedList cl=new CircularLinkedList();
+		cl.add(0);
+		cl.add(1);
+		cl.add(2);
+		cl.add(3);
+		cl.add(4);
+		cl.display();
+		cl.add1(1,1);
+		cl.display();
+		//System.out.println(cl.size());
+		cl.add1(11,7);
+		cl.display();
+		//System.out.println(cl.size());
+		cl.delete(1);
+		cl.display();
+		cl.delete(7);
+		cl.display();
+	}
+}
