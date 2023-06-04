@@ -1,0 +1,45 @@
+class Solution
+{
+	Node sortList(Node head) {
+	    if(head==null ||head.next==null)return head;
+		Node curr=head;
+		Node posHead=null;
+		Node pos=null;
+		Node negHead=null;
+		Node neg=null;
+		Node join=null;
+		while(curr!=null){
+		    Node temp=curr.next;
+		    if(curr.data>=0){
+		        if(pos==null){
+		            pos=curr;
+		            posHead=curr;
+		        }
+		        else{
+		            pos.next=curr;
+		            pos=pos.next;
+		        }
+		    }
+		    else
+		    {
+		        if(neg==null){
+		            neg=curr;
+		            join=curr;
+		            neg.next=null;
+		            negHead=curr;
+		           
+		        }
+		        else{
+		            negHead=curr;
+		            negHead.next=neg;
+		            neg=negHead;
+		        }
+		    }
+		    curr=temp;
+		}
+		if(pos!=null)pos.next=null;
+	    if(join!=null)join.next=posHead;
+		if(negHead!=null)return negHead;
+		return posHead;
+	}
+}
