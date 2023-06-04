@@ -1,0 +1,159 @@
+public class DoublyLinkedList {
+	Node start;
+	Node temp;
+	Node last;
+	class Node
+	{
+		Node lnode;
+		Node rnode;
+		int data;
+		Node(int data)
+		{
+			this.data=data;
+			this.lnode=null;
+			this.rnode=null;
+		}
+	}
+	public void add(int data)
+	{
+		Node node=new Node(data);
+		if(start==null)
+		{
+			start=node;
+			last=node;
+			
+		
+		}
+		else
+		{
+			last.rnode=node;
+			node.lnode=last;
+			last=node;
+			
+			
+		}
+	}
+	public void add1(int data,int pos)
+	{
+		Node node=new Node(data);
+		if(pos==1)
+		{
+			node.rnode=start;
+			start.lnode=node;
+			start=node;
+			
+			
+		}
+		else
+		{
+			try {
+			temp=start;
+			for(int i=1;i<pos-1;i++)
+			{
+				temp=temp.rnode;
+			}
+			if(temp==last)
+			{
+				temp.rnode=node;
+				node.lnode=temp;
+				last=node;
+				
+			}
+			else
+			{
+			Node temp1=temp.rnode;;
+			temp.rnode=node;
+			node.lnode=temp;
+			node.rnode=temp1;
+			temp1.lnode=node;
+			
+			}
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println(pos+ " position not found");
+			}
+		}
+	}
+	public void delete(int pos)
+	{
+		if(pos==1)
+		{
+			start=start.rnode;
+			start.lnode=null;
+		}
+		else
+		{
+			try {
+				temp=start;
+				for(int i=1;i<pos-1;i++)
+				{
+					temp=temp.rnode;
+				}
+				if(temp.rnode==last)
+				{
+					temp.rnode=null;
+					last=temp;
+				}
+				else
+				{
+				Node temp1;
+				temp1=temp.rnode;
+				temp.rnode=temp1.rnode;
+				temp1=temp1.rnode;
+				temp1.lnode=temp;
+				
+				
+				
+				}
+				}
+				catch(NullPointerException e)
+				{
+					System.out.println("position not found");
+				}
+		}
+	}
+	public void isempty()
+	{
+		if(start==null)
+			System.out.println("List is empty");
+		else
+			System.out.println("List is not empty");
+	}
+	public void display()
+	{
+		temp=start;
+		System.out.print(temp.data+" ");
+		while(temp.rnode!=null)
+		{
+			
+			temp=temp.rnode;
+			System.out.print(temp.data+" ");
+		}
+		System.out.println();
+	}
+	public static void main(String args[])
+	{
+		DoublyLinkedList dll=new DoublyLinkedList();
+		
+		dll.add(0);
+		dll.add(1);
+		dll.add(3);
+		dll.add(9);
+		dll.add(23);
+		dll.display();
+		dll.add1(2,5);
+		dll.display();
+		dll.add1(22,1);
+		dll.display();
+		dll.add1(24,8);
+		dll.display();
+		
+		dll.display();
+		dll.delete(1);
+		dll.display();
+		dll.delete(7);
+		dll.display();
+		
+	}
+}
