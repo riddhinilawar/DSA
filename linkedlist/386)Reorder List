@@ -1,0 +1,39 @@
+class Solution {
+    public void reorderList(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast!=null && fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        ListNode first=head;
+        ListNode second=slow.next;
+        slow.next=null;
+        second = getReversed(second);
+
+        while(first!=null && second!=null){
+            ListNode fnext=first.next;
+            ListNode snext=second.next;
+
+            ListNode temp = first.next;
+            first.next=second;
+            second.next=temp;
+
+            first=fnext;
+            second=snext;
+        }
+    }
+    public ListNode getReversed(ListNode head) {
+        ListNode prev=null;
+        ListNode curr=head;
+        while(curr!=null){
+            ListNode next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}
