@@ -1,0 +1,165 @@
+public class LinkedList {
+	Node start;
+	Node temp;
+	Node last;
+	class Node
+	{
+		int data;
+		Node next;
+		Node(int data)
+		{
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public void isempty()
+	{
+		if(start==null)
+			System.out.println("List is empty");
+		else
+			System.out.println("List is not empty");
+	}
+	public void add(int data)
+	{
+		Node node=new Node(data);
+		if(start==null)
+		{
+			start=node;
+		}
+		else
+		{
+			temp=start;
+			while(temp.next!=null)
+				temp=temp.next;
+			temp.next=node;
+		}
+		//O(n) complexity
+	}
+	public void add1(int data)
+	{
+		Node node=new Node(data);
+		if(start==null)
+		{
+			start=node;
+			last=node;
+		}
+		else
+		{
+			temp=last;
+			temp.next=node;
+			temp=temp.next;
+			last=temp;
+		}
+		//O(1) complexity
+	}
+	public void add2(int data,int pos)
+	{
+		Node temp1;
+		int count=1;
+		Node node=new Node(data);
+		if(pos==1)
+		{
+			temp=start;
+			start=node;
+			start.next=temp;
+		}
+		else
+		{
+			temp=start;
+			try
+			{
+				for(int i=1;i<pos-1;i++)
+				{
+					temp=temp.next;
+				}
+				temp1=temp.next;
+				temp.next=node;
+				node.next=temp1;
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println("Position not found");
+			}
+		}
+	}
+	public void delete(int pos)
+	{
+		Node temp1=start.next;
+		temp=start;
+		if(pos==1)
+		{
+			start=start.next;
+		}
+		else
+		{
+			try 
+			{
+				for(int i=1;i<pos-1;i++)
+				{
+					temp=temp.next;
+					temp1=temp1.next;
+				}
+				temp.next=temp1.next;
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println("Position not found");
+			}
+		}
+	}
+	public void search(int key)
+	{
+		int flag=0;
+		temp=start;
+		while(temp!=null)
+		{
+			if(temp.data==key)
+			{
+				flag=1;
+				System.out.println("key found");
+				break;
+			}
+			temp=temp.next;
+		}
+		if(flag==0)
+		System.out.println("key not found");
+	}
+	public void display()
+	{
+		temp=start;
+		while(temp!=null)
+		{
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+		}
+		System.out.println();
+	}
+	public static void  main(String args[])
+	{
+		LinkedList l=new LinkedList();
+		l.add1(11);
+		l.add1(1);
+		l.add1(2);
+		l.add1(3);
+		l.add1(4);
+		l.add1(5);
+		l.display();
+		l.search(11);
+		l.search(7);
+		l.search(5);
+		l.search(1);
+		l.add2(0,1);
+		l.display();
+		l.add2(99,3);
+		l.display();
+		l.add2(9,10);
+		l.display();
+		l.delete(1);
+		l.display();
+		l.delete(4);
+		l.display();
+		l.delete(7);
+		l.display();
+		
+	}
+}
