@@ -1,0 +1,59 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+        return mergeSort(head);
+    }
+    public ListNode mergeSort(ListNode head){
+
+        if(head==null || head.next==null)
+            return head;
+
+        ListNode slow=head,fast=head.next;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        ListNode temp=slow.next;
+        slow.next=null;
+
+        ListNode left=mergeSort(head);
+        ListNode right=mergeSort(temp);
+        return merge(left,right);
+    }
+    public ListNode merge(ListNode l1,ListNode l2){
+        ListNode l3=new ListNode(-1);
+        ListNode ans=l3;
+
+        while(l1!=null && l2!=null){
+            if(l1.val<l2.val){
+                l3.next=l1;
+                l1=l1.next;
+                l3=l3.next;
+                l3.next=null;
+            }
+            else{
+                l3.next=l2;
+                l2=l2.next;
+                l3=l3.next;
+                l3.next=null;
+            }
+        }
+
+        while(l1!=null){
+            l3.next=l1;
+            l1=l1.next;
+            l3=l3.next;
+            l3.next=null;
+        }
+
+        while(l2!=null){
+            l3.next=l2;
+            l2=l2.next;
+            l3=l3.next;
+            l3.next=null;
+        }
+
+        return ans.next;
+    }
+}
