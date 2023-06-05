@@ -99,11 +99,6 @@ class Solution
             {
                 borrow = 0;
             }
-            if(diff == 0 && c1.next ==null)
-            {
-                c1 = c1.next;
-                continue;
-            }
             itr.next = new Node(diff);
             itr = itr.next;
             c1 = c1.next;
