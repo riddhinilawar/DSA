@@ -43,3 +43,22 @@ class Solution {
         return solve(m,n,0,0,dp);
     }
 }
+
+Recursive Approach (gives TLE):
+
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int ans[]=new int[]{0};
+        dp(0,0,m,n,ans);
+        return ans[0];
+    }
+    public void dp(int i,int j,int m,int n,int ans[]){
+        if(i==m-1 && j==n-1)
+            ans[0]++;
+        if(i>=m || j>=n)
+            return;
+        System.out.println(i+" "+j);
+        dp(i+1,j,m,n,ans);
+        dp(i,j+1,m,n,ans);
+    }
+}
