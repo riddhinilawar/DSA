@@ -1,23 +1,15 @@
 Length of longest subarray with sum 0         LC-3,gfg
-Given a string s, find the length of the longest substring without repeating characters.
- 
-Example 1:
-Input: s = "abcabcbb"
-Output: 3
-Explanation: The answer is "abc", with the length of 3.
-Example 2:
-Input: s = "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-Example 3:
-Input: s = "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3.
-Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
- 
-Constraints:
-•	0 <= s.length <= 5 * 104
-•	s consists of English letters, digits, symbols and spaces.
+Given an array arr[] of length N, find the length of the longest sub-array with a sum equal to 0.
+
+Examples:
+
+Input: arr[] = {15, -2, 2, -8, 1, 7, 10, 23}
+Output: 5
+Explanation: The longest sub-array with elements summing up-to 0 is {-2, 2, -8, 1, 7}
+
+Input: arr[] = {1, 2, 3}
+Output: 0
+Explanation: There is no subarray with 0 sum
 Solution 1: Navie Approach
 
 Intuition:
