@@ -31,6 +31,39 @@ Constraints:
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105
 
+Approach: two pinters
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        
+        HashSet<List<Integer>> set=new HashSet<>();
+        int target=0;
+        int n=nums.length;
+        Arrays.sort(nums);
+        
+        for(int i=0;i<n-2;i++){
+            int j=i+1;
+            int k=n-1;
+            int find=-nums[i];
+            while(j<k){
+                if(nums[j]+nums[k]==find){
+                    List<Integer> ll = new LinkedList<>();
+                    ll.add(nums[i]);
+                    ll.add(nums[j]);
+                    ll.add(nums[k]);
+                    set.add(ll);
+                }
+                if(nums[j]+nums[k]>find)
+                    k--;
+                else
+                    j++;
+            }
+        }
+	    List<List<Integer>> ans= new ArrayList<>(set);
+	    return ans;
+    }
+}
+	
+Approach: Binary Search
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         
