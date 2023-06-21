@@ -15,3 +15,24 @@ class Solution {
     return head;
     }
 }
+----------------------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode ans = new ListNode(-101);
+        ListNode prev=ans;
+        ListNode curr=head;
+        while(curr!=null){
+            if(curr.val!=prev.val){
+                prev.next=curr;
+                prev=curr;
+                curr=curr.next;
+            }
+            else{
+                curr=curr.next;
+            }
+        }
+        prev.next=null;
+        return ans.next;
+    }
+}
