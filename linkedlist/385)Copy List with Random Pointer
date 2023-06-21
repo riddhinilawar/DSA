@@ -1,48 +1,39 @@
 Approach 1) Using HashMap:-
 
 class Solution {
-    public ListNode partition(ListNode head, int x) {
-        if(head==null)return head;
+    public Node copyRandomList(Node head) {
+        Node temp=head;
+        HashMap<Node,Node> map =new HashMap<>();
 
-        ListNode before=null;
-        ListNode after=null;
-        ListNode beforehead=null;
-        ListNode afterhead=null;
-        ListNode curr=head;
-        while(curr!=null){
-            if(curr.val<x){
-                if(before==null){
-                    before=curr;
-                    beforehead=curr;
-                    curr=curr.next;
-                    before.next=null;
-                }
-                else{
-                    before.next=curr;
-                    curr=curr.next;
-                    before=before.next;
-                    before.next=null;
-                }
+        Node anshead=null;
+        Node t=null;
+        while(temp!=null){
+            Node newnode = new Node(temp.val);
+            map.put(temp,newnode);
+
+            if(anshead==null){
+                anshead=newnode;
+                t=newnode;
             }
             else{
-                if(after==null){
-                    after=curr;
-                    afterhead=curr;
-                    curr=curr.next;
-                    after.next=null;
-                }
-                else{
-                    after.next=curr;
-                    curr=curr.next;
-                    after=after.next;
-                    after.next=null;
-                }
+                t.next=newnode;
+                t=t.next;
             }
-            
+            temp= temp.next;
         }
-        if(before==null)return afterhead;
-        before.next=afterhead;
-        return beforehead;
+
+        temp=head;
+        t=anshead;
+        while(temp!=null){
+            if(temp.random!=null)
+                t.random = map.get(temp.random);
+            else
+                t.random=null;
+
+            t=t.next;
+            temp=temp.next;
+        }
+        return anshead;
     }
 }
 --------------------------------------------------------------------------------------------------------------------------
