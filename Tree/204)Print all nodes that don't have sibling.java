@@ -50,8 +50,8 @@ class Tree
         if(node.left==null && node.right!=null)
             arr.add(node.right.data);
             
-        if(node.left!=null) helper(node.left,arr);
-        if(node.right!=null) helper(node.right,arr);
+        helper(node.left,arr);
+        helper(node.right,arr);
         
         return;
     }
