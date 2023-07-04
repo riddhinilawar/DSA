@@ -23,3 +23,25 @@ All the values Node.val are unique.
 -108 <= val <= 108
 It's guaranteed that val does not exist in the original BST.
 
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if(root==null)
+            return new TreeNode(val);
+
+        TreeNode prev=null;
+        TreeNode ans=root;
+        while(root!=null){
+            if(val>root.val){
+                prev=root;
+                root=root.right;
+            }
+            else{
+                prev=root;
+                root=root.left;
+            }
+        }
+        if(prev.val>val)prev.left=new TreeNode(val);
+        else prev.right=new TreeNode(val);
+        return ans;
+    }
+}
