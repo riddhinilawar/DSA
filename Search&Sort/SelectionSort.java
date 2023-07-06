@@ -1,9 +1,11 @@
 Selection Sort
 Expected Time Complexity:
- Best : O(N2)
- Average: O(N2)
- Worst: O(N2)
+Best : O(N2)
+Average: O(N2)
+Worst: O(N2)
 Expected Auxiliary Space: O(1)
+
+	
 Iterative:
 for (int i = 0; i < n-1; i++)
         {
@@ -20,6 +22,8 @@ for (int i = 0; i < n-1; i++)
             arr[i] = temp;
         }
 	
+
+
 Recursive:
 public static int[] SelectionSort(int arr[],int index,int curr)
 	{
