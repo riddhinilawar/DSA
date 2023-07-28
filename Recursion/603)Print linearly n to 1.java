@@ -1,5 +1,5 @@
 
-public class PrintNameNTimes {
+public class Print {
 	public static void main(String[] args) {
 		int n=3;
 		fun(n);
