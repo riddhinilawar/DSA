@@ -29,7 +29,8 @@ class Solution {
     }
     
     private void clearRestOfLand(int[][] grid, int i, int j,int color,int prevcol) {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] != prevcol)                          return;
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] != prevcol)                         
+          return;
         
         grid[i][j] = color;
         clearRestOfLand(grid, i+1, j,color,prevcol);
