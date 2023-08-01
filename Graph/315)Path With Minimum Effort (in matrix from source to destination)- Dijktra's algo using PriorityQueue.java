@@ -13,7 +13,7 @@ columns == heights[i].length
 1 <= rows, columns <= 100
 1 <= heights[i][j] <= 106
  
-Expected Time Complexity: O(Elog(V))
+Expected Time Complexity: O(E log(V))
 Expected Space Complexity: O(N,M)
 
 class Tuple{
@@ -28,7 +28,7 @@ class Tuple{
 }
 class Solution {
     
-    int MinimumEffort(int heights[][]) {
+    public int minimumEffortPath(int heights[][]) {
 
         PriorityQueue<Tuple> pq = 
         new PriorityQueue<Tuple>((x,y) -> x.distance - y.distance);
@@ -59,7 +59,7 @@ class Solution {
             int col = it.col; 
             
         
-            if(row == n-1 && col == m-1) return diff; 
+            //if(row == n-1 && col == m-1) return diff;   //also works fine
          
             for(int i = 0;i<4;i++) {
                 int newr = row + dr[i]; 
@@ -78,35 +78,10 @@ class Solution {
                 }
             }
         }
-       return dist[n-1][m-1]; 
+        if(dist[n-1][m-1]!=(int)(1e9))return dist[n-1][m-1];
+       return 0; 
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
