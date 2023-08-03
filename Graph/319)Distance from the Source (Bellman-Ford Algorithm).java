@@ -1,5 +1,15 @@
 Distance from the Source (Bellman-Ford Algorithm)
 
+ Note:
+1)Can be applied on DG(Directed Graph)
+2)Used to get the shortest distance between source node and all the other nodes in the graph
+
+ Hint:
+do(V-1)times
+ for all edges
+   if(dist[u]+wt<dist[v])
+     dist[v]=dist[u]+wt
+
 Given a weighted, directed and connected graph of V vertices and E edges, Find the shortest distance of all the vertex's from the source vertex S.
 Note: If the Graph contains a negative cycle then return an array consisting of only -1.
 Example 1:
