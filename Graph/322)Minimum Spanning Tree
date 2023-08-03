@@ -1,0 +1,9 @@
+A tree which have n nodes and n-1 edges.
+
+All the edges are rechable from each other.
+
+any tree with the least sum is called minimum spanning tree.
+
+Algo:
+1)Prim's
+2)Krushkal's
