@@ -43,52 +43,44 @@ class Solution {
         while(true)
         {
             boolean flag=true;
-            int max=0;
-            int max_i=i;
-            int max_j=j;
 
             if(i>0&&curr<mat[i-1][j]&&flag==true)
             {
                 //System.out.println("In 1");
                 flag=false;
-                max=mat[i-1][j];
-                max_i=i-1;
+                curr=mat[i-1][j];
+                i=i-1;
             }
 
             if(j>0&&curr<mat[i][j-1]&&flag==true)
             {
-                 //System.out.println("In 2");
+                //System.out.println("In 2");
                 flag=false;
-                max=mat[i][j-1];
-                max_j=j-1;
- .           }
+                curr=mat[i][j-1];
+                j=j-1;
+            }
 
             if(i<n-1&&curr<mat[i+1][j]&&flag==true)
             {
-                 //System.out.println("In 3");
+                //System.out.println("In 3");
                 flag=false;
-                max=mat[i+1][j];
-                max_i=i+1;
+                curr=mat[i+1][j];
+                i=i+1;
             }
-.;;;;;
+
             if(j<m-1&&curr<mat[i][j+1]&&flag==true)
             {
-                 //System.out.println("In 4");
+                //System.out.println("In 4");
                 flag=false;
-                max=mat[i][j+1];
-                max_j=j+1;
+                curr=mat[i][j+1];
+                j=j+1;
             }
 
             if(flag==true)
             {
                 return new int[]{i,j};
             }
-            else
-            {
-                curr=max;
-                i=max_i;
-                j=max_j;
-            }
+            
         }
         
     }
