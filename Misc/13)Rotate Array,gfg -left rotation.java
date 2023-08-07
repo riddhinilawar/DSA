@@ -24,6 +24,7 @@ class Solution
     {
         if(d>=n)d=d%n;
         int j=d-1;
+        //rotate first d elements of the array
         for(int i=0;i<d/2;i++)
         {
             int temp=arr[i];
@@ -32,6 +33,7 @@ class Solution
             j--;
         }
         j=n-1;
+        //rotate last n-d elements in the array
         for(int i=d;i<j;i++)
         {
             int temp=arr[i];
@@ -40,6 +42,7 @@ class Solution
             j--;
         }
         j=n-1;
+        //rotate complete array
         for(int i=0;i<j;i++)
         {
             int temp=arr[i];
