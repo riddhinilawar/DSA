@@ -33,8 +33,6 @@ Expected Auxiliary Space: O(1)
 
 Constraints:
 1 <= m <= n <= 106
-
-
 class Solution{
     public static int appleSequence(int n, int m, String arr){
         int st=0;
@@ -44,15 +42,15 @@ class Solution{
         
         while(en<n){
             
+            if(arr.charAt(en)=='O')
+                cnt++;
+            
             while(cnt>m){
                 if(arr.charAt(st)=='O')
                     cnt--;
                 st++;
             }
-            
-            if(arr.charAt(en)=='O')
-                cnt++;
-                
+
             if(cnt<=m){
                 ans=Math.max(ans,en-st+1);
             }
@@ -63,4 +61,3 @@ class Solution{
         return ans;
     }
 }
-
