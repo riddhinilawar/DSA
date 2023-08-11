@@ -30,5 +30,5 @@ static int smallestSumSubarray(int a[], int size)
         else
         return minsum;
     }
-Expected Time Complexity: O(N+M)
+Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(1)
