@@ -39,3 +39,42 @@ class Solution {
 }
 Expected Time Complexity: O(logN)
 Expected Auxiliary Space: O(1)
+-------------------------------------------------------------------------------------------------------------
+class Solution {
+    int ans=0;
+    int min=Integer.MAX_VALUE;
+    int findKRotation(int arr[], int n) {
+        int start=0;
+        int end=arr.length-1;
+        if(arr[start]<=arr[end])
+            return 0;
+        ans=0;
+        min=Integer.MAX_VALUE;
+        BS(arr,start,end);
+        return ans;
+    }
+    void BS(int arr[],int start,int end){
+        if(start>end)
+            return;
+        int mid=start+(end-start)/2;
+        //System.out.println(start+" "+end+" "+mid);
+        if(arr[start]<=arr[mid]){
+            
+            if(arr[start]<min){
+                ans=start;
+                min=arr[start];
+            }
+            //System.out.println("start:"+ans);
+            BS(arr,mid+1,end);
+        }
+        else{
+            ans=mid;
+            if(arr[mid]<min){
+                ans=mid;
+                min=arr[mid];
+            }
+            //System.out.println("mid:"+ans);
+            BS(arr,start,mid-1);
+        }
+    }
+}
