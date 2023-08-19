@@ -68,7 +68,7 @@ class Solution {
             BS(arr,mid+1,end);
         }
         else{
-            ans=mid;
+            
             if(arr[mid]<min){
                 ans=mid;
                 min=arr[mid];
