@@ -29,6 +29,33 @@ Constraints:
 Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(N)~tentative
 
+ class Solution {
+    public int[] plusOne(int[] digits) {
+        int n=digits.length;
+        int carry=1;
+        for(int i=n-1;i>=0;i--){
+            int temp=digits[i]+carry;
+            if(temp>9){
+                carry=1;
+                digits[i]=temp-10;
+            }
+            else{
+                carry=0;
+                digits[i]=temp;
+                break;
+            }
+        }
+        if(carry==1){
+            int arr[]=new int[n+1];
+            arr[0]=1;
+            for(int i=0;i<n;i++)
+                arr[i+1]=digits[i];
+            return arr;
+        }
+        return digits;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------
 class Solution {
      
     public int[] plusOne(int[] digits) {
