@@ -1,4 +1,4 @@
-Generate Parentheses ,gfg    - backtracking                    LC-22                                                                     
+Generate Parentheses ,gfg    - recursion                    LC-22                                                                     
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
  
 Example 1:
