@@ -30,4 +30,4 @@ class Solution {
        
     }
 }
-Time Complexity: O(log N)
+Time Complexity: O(N*2)!
