@@ -1,6 +1,48 @@
 Expected Time Complexity: O(nlogn)  in all cases
 Expected Auxiliary Space: O(n)
 
+
+class Solution
+{
+    void merge(int arr[], int l, int m, int r)
+    {
+        int left[]=new int[m-l+1];
+        int right[]=new int[r-m];
+        
+        int i=0,j=0,k=l;
+        
+        for(int x=l;x<=m;x++)
+            left[i++]=arr[x];
+        for(int x=m+1;x<=r;x++)
+            right[j++]=arr[x];
+            
+        i=0;j=0;
+        
+        while(i<left.length && j<right.length){
+            if(left[i]<=right[j])
+                arr[k++]=left[i++];
+            else
+                arr[k++]=right[j++];
+        }
+        
+        while(i<left.length)
+            arr[k++]=left[i++];
+        
+        while(j<right.length)
+            arr[k++]=right[j++];
+        
+    }
+    void mergeSort(int arr[], int l, int r)
+    {
+        if(l<r){
+            int mid=l+(r-l)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,r);
+        }
+    }
+}
+-------------------------------------------------------------------------------
 Merge Sort – In Place ,gfg
 void merge(int arr[], int start, int mid, int end)
     {
