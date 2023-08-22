@@ -1,4 +1,4 @@
-Find ot how many times array is rotated,gfg                      
+Find how many times array is rotated,gfg                      
 Given an ascending sorted rotated array Arr of distinct integers of size N. The array is right rotated K times. Find the value of K.
 Example 1:
 Input: N = 5 Arr[] = {5, 1, 2, 3, 4}
