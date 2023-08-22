@@ -19,24 +19,28 @@ Expected Time Complexity: O(n)
 Expected Auxiliary Space: O(1)
 
 
-
 class Solution {
     public int findKthPositive(int[] arr, int k) {
         
         int n=arr.length;
-        if(k<arr[0])
-        {
+        if(k<arr[0]){
             return k;
         }
-        else if((arr[n-1]-n)>=k)
+        else if(k> (arr[n-1] -n)){
+            return arr[n-1] + k - (arr[n-1] -n);
+        }
+        else
         {
             int start=0,end=n-1;
             int mid=0;
+            int pos=0;
             while(start<=end)
             {
                 mid=start+(end-start)/2;
+
                 if((arr[mid]-(mid+1))<k)
                 {
+                    pos=mid;
                     start=mid+1;
                 }
                 else
@@ -44,21 +48,10 @@ class Solution {
                     end=mid-1;
                 }
             }
+            //System.out.println(pos);
+            return arr[pos]+k-(arr[pos]-(pos+1));
             
-            if(k>(arr[mid]-(mid+1)))
-            {
-                return arr[mid]+k-(arr[mid]-(mid+1));
-            }
-            else
-            {
-                mid=mid-1;
-                return arr[mid]+k-(arr[mid]-(mid+1));
-            }
             
-        }
-        else
-        {
-            return arr[n-1]+k-(arr[n-1]-(n));
         }
     }
 }
