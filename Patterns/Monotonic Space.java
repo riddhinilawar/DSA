@@ -1,3 +1,24 @@
+[1,2,3,4,5,] [6,7,8,9]
+not possible/possible
+
+while(left <= right){
+    int mid = left + (right - left) / 2;
+    if(canEatInTime(piles, mid, h)) right = mid - 1;
+    else left = mid + 1;
+}
+return left;
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Koko eating bananas                                                          LC-875
 Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
 Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
