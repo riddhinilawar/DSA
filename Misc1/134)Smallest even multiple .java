@@ -19,3 +19,18 @@ class Solution {
         return 0;
     }
 }
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+    public int smallestEvenMultiple(int n) {
+        int temp=(n%2==0)?n:n+1;
+        for(int i=temp;i<=Integer.MAX_VALUE;i=i+2){
+            if(i%n==0)return i;
+        }
+        return 0;
+
+    }
+}
