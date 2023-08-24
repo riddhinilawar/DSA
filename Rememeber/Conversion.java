@@ -9,3 +9,6 @@ return list.toArray(new int[0][]);
 
 //Char arry to String
 return String.valueOf(arr);
+
+//map values to 2d arraylist
+return new ArrayList<>(map.values());
