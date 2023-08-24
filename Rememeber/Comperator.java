@@ -10,3 +10,34 @@ class itemComparator implements Comparator<Item>
         else return 0; 
     }
 }
+
+Arrays.sort(arr, new itemComparator());
+------------------------------------------------------------------------------------------------------------
+
+class Pair{
+    int value;
+    int weight;
+    double div;
+    Pair(int value,int weight,double div){
+        this.value=value;
+        this.weight=weight;
+        this.div=div;
+    }
+    double getDiv(){
+        return div;
+    }
+    
+}
+class ItemComparator implements Comparator<Pair>{
+    @Override
+    public int compare(Pair s1, Pair s2) {
+    if (s1.getDiv() < s2.getDiv())
+        return 1;
+    else if (s1.getDiv() > s2.getDiv())
+        return -1;
+    else
+        return 0;
+    }
+}
+
+ PriorityQueue<Pair> pq = new PriorityQueue<>(new ItemComparator());
