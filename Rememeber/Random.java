@@ -1,8 +1,11 @@
 //will generate the random number from 0 till given number-1;
 
-Random rand= new Random();
+Random rand= new Random();-->will return integer value
 int pivot = rand.nextInt(high-low)+low;
+------------------------------
 
+Math.random() ->will return double value   
+-----------------------------
 
 
 
