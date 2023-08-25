@@ -18,3 +18,7 @@ BigInteger a=new BigInteger(s1);
 BigInteger b=new BigInteger(s2);
 BigInteger c=a.multiply(b);
 return c.toString();
+
+
+//String to Integer
+Integer.parseInt(s);
