@@ -12,3 +12,9 @@ return String.valueOf(arr);
 
 //map values to 2d arraylist
 return new ArrayList<>(map.values());
+
+//BigInteger to String
+BigInteger a=new BigInteger(s1);
+BigInteger b=new BigInteger(s2);
+BigInteger c=a.multiply(b);
+return c.toString();
