@@ -2,7 +2,7 @@
 arr1.equals(arr2);
 
 
-//to check if arraylist contains arraylist
+//to check if HashSet contains arraylist
 if(list.contains(temp)==false)
 
 //converting 2d arraylist to 2d integer array
