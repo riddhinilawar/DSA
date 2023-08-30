@@ -1,8 +1,7 @@
 37. Sudoku Solver
-Hard
-8.7K
-223
-Companies
+Time Complexity: O(9(n ^ 2)), in the worst case, for each cell in the n2 board, we have 9 possible numbers.
+
+Space Complexity: O(1), since we are refilling the given board itself, there is no extra space required, so constant space complexity.
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
 A sudoku solution must satisfy all of the following rules:
