@@ -1,5 +1,5 @@
-Number of distinct islands(BFS)
-
+Number of distinct islands(BFS,DFS)
+Note:- Instead of using hashset<ArrayList>, we can store the answer in the StringBuilder and at last put it in arraylist and compare, the compare can be done with the try to do it in O(2n)complexity with Node(link[26],count).while checking if count==2, make ans++;
 Given a boolean 2D matrix grid of size n * m. You have to find the number of distinct islands where a group of connected 1s (horizontally or vertically) forms an island. Two islands are considered to be distinct if and only if one island is not equal to another (not rotated or reflected).
 Example 1:
 Input:
