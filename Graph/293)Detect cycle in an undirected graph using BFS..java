@@ -69,3 +69,30 @@ class Pair{
         this.parent=parent;
     }
 }
+=====================================================================================================================
+
+ class Solution {
+    // Function to detect cycle in an undirected graph.
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        int vis[]=new int[V];
+        for(int i=0;i<V;i++){
+            if(vis[i]==0){
+                if(dfs(i,-1,adj,vis)==true)
+                    return true;
+            }    
+        }
+        return false;
+    }
+    public boolean dfs(int curr,int prev,ArrayList<ArrayList<Integer>> adj,int vis[]){
+        vis[curr]=1;
+        for(int neg:adj.get(curr)){
+            if(neg!=prev){
+                if(vis[neg]==1)
+                    return true;
+                if(dfs(neg,curr,adj,vis)==true)
+                        return true;
+            }
+        }
+        return false;
+    }
+}
