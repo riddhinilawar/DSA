@@ -39,7 +39,7 @@ Expected Auxiliary Space: O(N).
 
 Constraints:
 1 <= Number of nodes <= 105
-
+==========================================================constructed new tree===========================================================
 class Solution{
     Node binaryTreeToBST(Node root){
        LinkedHashMap<Integer,Integer> map = new LinkedHashMap<>();
@@ -66,5 +66,27 @@ class Solution{
         newNode.right=generateBST(map,root.right);
         return newNode;
     }
+}
+ 
+================================================================made the changes in same tree==============================================================
+
+ 
+class Solution{
+    int index=0;
+    Node binaryTreeToBST(Node root){
+        ArrayList<Integer> nodes=new ArrayList<>();
+        dfs(root,nodes,0);
+        Collections.sort(nodes);
+        dfs(root,nodes,1);
+        return root;
+    }
+    void dfs(Node root,ArrayList<Integer> nodes,int nodesReady){
+        if(root == null) return;
+        dfs(root.left,nodes,nodesReady);
+        if(nodesReady==1) root.data = nodes.get(index++);
+        else nodes.add(root.data);
+        dfs(root.right,nodes,nodesReady);
+    }
+    
 }
  
