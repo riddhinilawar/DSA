@@ -146,4 +146,24 @@ public List<Integer> getRow(int n) {
         }
         return ans;
     }
-    
+==================================================================================================================================================
+
+class Solution {
+    public List<List<Integer>> generate(int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> curr;
+        for(int i=1;i<=n;i++){
+           curr=new ArrayList<Integer>();
+            for(int j=0;j<i;j++){
+                if(j==0 || j==i-1){
+                    curr.add(1);
+                }
+                else{
+                    curr.add(res.get(i-2).get(j-1)+res.get(i-2).get(j));
+                }
+            }
+            res.add(curr);
+        }
+        return res;
+    }
+}
