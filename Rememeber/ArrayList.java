@@ -12,4 +12,5 @@ return res.toArray(new int[0][]);
 number.remove(k/fact);
 
 //set use to update the element at that pos 
-number.remove(pos,element);
+number.set(pos,element);
+example:graph/DSU
