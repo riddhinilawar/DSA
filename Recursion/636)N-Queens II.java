@@ -54,3 +54,37 @@ class Solution {
         }
     }
 }
+===============================================================================================================================================
+
+class Solution {
+    
+    public int totalNQueens(int n) {
+        int res[]=new int[1];
+        boolean upperdiag[]=new boolean[(2*n)-1];
+        boolean lowerdiag[]=new boolean[(2*n)-1];
+        boolean left[]=new boolean[n];
+        int dp[]=new int[n];
+        Arrays.fill(dp,-1);
+        return dfs(0, res,upperdiag,lowerdiag,left,n,dp);
+    }
+
+    static int dfs(int col, int[] res,boolean upperdiag[],boolean lowerdiag[],boolean left[],int n,int dp[]) {
+        if (col == n) {
+            return 1;
+        }
+        //if(dp[col]!=-1)return dp[col];
+        int ans=0;
+        for (int row = 0; row < n; row++) {
+            if (upperdiag[row+col]==false && left[row]==false && lowerdiag[(n-1)+(col-row)]==false) {
+                upperdiag[row+col]=true;
+                left[row]=true;
+                lowerdiag[(n-1)+(col-row)]=true;
+                ans+=dfs(col + 1, res,upperdiag,lowerdiag,left,n,dp);
+                upperdiag[row+col]=false;
+                left[row]=false;
+                lowerdiag[(n-1)+(col-row)]=false;
+            }
+        }
+        return dp[col]= ans;
+    }
+}
