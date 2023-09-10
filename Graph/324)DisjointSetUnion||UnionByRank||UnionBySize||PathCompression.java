@@ -1,3 +1,6 @@
+TC:(4alpha)-->alpha is constant here(after path compression)
+SC:2V
+
 import java.io.*;
 import java.util.*;
 class DisjointSet {
