@@ -104,7 +104,7 @@ class Solution {
        
 
         int[][] dp = new int[n][m]; 
-        int[][] vis = new int[n][m]; 
+ 
         for(int i = 0;i<n;i++) {
             for(int j = 0;j<m;j++) {
                 dp[i][j] = Integer.MAX_VALUE; 
@@ -126,7 +126,7 @@ class Solution {
             int diff = it.dist; 
             int row = it.i; 
             int col = it.j; 
-            vis[row][col]=1;
+           
         
             //if(row == n-1 && col == m-1) return diff;   //also works fine
          
@@ -135,7 +135,7 @@ class Solution {
                 int newc = col + dc[i];
                 
               
-                if(newr>=0 && newc >=0 && newr < n && newc < m && vis[newr][newc]==0) {
+                if(newr>=0 && newc >=0 && newr < n && newc < m) {
 
                     int newDiff=Math.min(diff,dist[newr][newc]);
 
