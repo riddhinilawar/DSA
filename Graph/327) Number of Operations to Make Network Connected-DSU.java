@@ -43,32 +43,25 @@ class Solution {
         DisjointSet dsuObj = new DisjointSet(n);
 
         int connectionsCount=connections.length;
-
+        int extraEdges=0;
+        
         for(int i=0;i<connectionsCount;i++){
             int pu=dsuObj.findUPar(connections[i][0]);
             int pv=dsuObj.findUPar(connections[i][1]);
 
-            if(pu==pv)continue;
+            if(pu==pv){
+                extraEdges++;;
+                continue;
+            }
             dsuObj.unionBySize(connections[i][0],connections[i][1]);
         }
 
         int totalComponenets=0;
+        
 
         for(int i=0;i<n;i++){
             if(dsuObj.parent.get(i)==i)
                 totalComponenets++;
-        }
-
-        DisjointSet dsuObj2 = new DisjointSet(n);
-        
-        int extraEdges=0;
-
-        for(int i=0;i<connectionsCount;i++){
-            int pu=dsuObj2.findUPar(connections[i][0]);
-            int pv=dsuObj2.findUPar(connections[i][1]);
-
-            if(pu==pv)extraEdges++;;
-            dsuObj2.unionBySize(connections[i][0],connections[i][1]);
         }
 
         if(totalComponenets-1<=extraEdges){
