@@ -28,3 +28,12 @@ Constraints:
 1 <= V <= 105
 1 <= E <= 2*105
 
+class Solution{
+    public boolean isEularCircuitExist(int V, ArrayList<ArrayList<Integer>> adj){
+        if(V==1)return true;
+        for(int i=0;i<V;i++) 
+            if(adj.get(i).size()%2!=0) 
+                return false;
+        return true;
+    }
+}
