@@ -56,3 +56,56 @@ class Solution {
         itinerary.addFirst(airport);
     }
 }
+
+
+======================================================================================================================================
+
+ class Solution {
+    public List<String> findItinerary(List<List<String>> tickets) {
+        Map<String, List<String>> graph = new HashMap<>();
+        HashMap<String,HashMap<String,Integer>> vis = new HashMap<>();
+
+        for (List<String> ticket : tickets) {
+            graph.putIfAbsent(ticket.get(0), new ArrayList<>());
+            graph.get(ticket.get(0)).add(ticket.get(1));
+            
+            
+            vis.putIfAbsent(ticket.get(0),new HashMap<>());
+            int temp=0;
+            if(vis.get(ticket.get(0)).containsKey(ticket.get(1))){
+                temp=vis.get(ticket.get(0)).get(ticket.get(1));
+            }
+            vis.get(ticket.get(0)).put(ticket.get(1),temp+1);
+
+        }
+
+        for(String airport:graph.keySet()){
+            Collections.sort(graph.get(airport));
+        }
+        
+        LinkedList<String> itinerary = new LinkedList<>();
+        
+        dfs("JFK", graph, itinerary,vis);
+        
+        return itinerary;
+    }
+    
+    private void dfs(String airport, Map<String, List<String>> graph, LinkedList<String> itinerary, HashMap<String,HashMap<String,Integer>> vis) {
+
+        
+        if(graph.containsKey(airport)==true){
+            for(String negAirports:graph.get(airport)){
+                if(vis.containsKey(airport) && vis.get(airport).containsKey(negAirports) && vis.get(airport).get(negAirports)>0){
+
+                    int temp=vis.get(airport).get(negAirports);
+                    vis.get(airport).put(negAirports, temp-1);
+
+                    dfs(negAirports, graph, itinerary,vis);
+                }
+            }
+        }
+
+        //System.out.println("end-->"+airport);
+        itinerary.addFirst(airport);
+    }
+}
