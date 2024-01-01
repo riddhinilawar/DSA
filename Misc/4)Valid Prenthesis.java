@@ -65,3 +65,34 @@ Note: Exceptions
 ] – only 1 chracter can not form parenthesis
 ( ] ) - ] should be pushed in the stack if [ is not found
 ){ -can not compate 0 with the peek element because stack is empty
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> S=new Stack<Character>();
+        if(s.length()%2==1)return false;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='{'||s.charAt(i)=='['||s.charAt(i)=='('){
+                S.push(s.charAt(i));
+            }
+            else{
+                if(S.isEmpty()==true){
+                    return false;
+                }
+                else if(s.charAt(i)=='}'&&S.peek()=='{'){
+                    S.pop();
+                }
+                else if(s.charAt(i)==')'&&S.peek()=='('){
+                    S.pop();
+                }
+                else if(s.charAt(i)==']'&&S.peek()=='['){
+                    S.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        if(S.isEmpty()==true)return true;
+        else return false;
+    }
+}
