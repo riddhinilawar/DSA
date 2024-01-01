@@ -59,6 +59,6 @@ class fibonacci {
             n + "th Fibonacci Number: " + fib(n));
     }
 }
-Expected Time Complexity: O(N)
-Expected Auxiliary Space: O(1)
+Expected Time Complexity: O(N), for recursive: O(2power n)
+Expected Auxiliary Space: O(1), for recusrive: O(logn)
 
