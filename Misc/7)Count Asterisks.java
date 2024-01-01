@@ -46,3 +46,21 @@ Exception: if no pipe symbol is found return 0.
 Remember : always even number of pipes will be present in the string.
 Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(1)
+
+
+class Solution {
+    public int countAsterisks(String s) {
+        boolean flag=true;
+        int count=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='|'){
+                flag=!flag;
+                continue;
+            }
+            if(flag==true && s.charAt(i)=='*'){
+                count++;
+            }
+        }
+        return count;
+    }
+}
