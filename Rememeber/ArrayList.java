@@ -14,3 +14,6 @@ number.remove(k/fact);
 //set use to update the element at that pos 
 number.set(pos,element);
 example:graph/DSU
+
+//convert array to arraylist
+result.add(Arrays.asList(strs));
