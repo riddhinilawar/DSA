@@ -15,5 +15,5 @@ number.remove(k/fact);
 number.set(pos,element);
 example:graph/DSU
 
-//convert array to arraylist
+//convert array to arraylist and then addaing to another arraylist
 result.add(Arrays.asList(strs));
