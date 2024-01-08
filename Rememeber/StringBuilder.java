@@ -33,6 +33,8 @@ class TextEditor {
         return res.substring(pos-10,pos);
     }
 }
+//reverse 
+return res.reverse().toString();
 
 /**
  * Your TextEditor object will be instantiated and called as such:
