@@ -38,6 +38,39 @@ class Solution
         return a;
     }
 }
+
+===================================================================
+
+class Solution{
+    //Function to find a continuous sub-array which adds up to a given number.
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        int end=0,start=0;
+        int sum=0;
+        
+        while(end<n){
+            sum+=arr[end];
+            
+            while(start<n && sum>s){
+                sum-=arr[start++];
+            }
+            
+            if(sum==s && start<=end){
+                ans.add(start+1);
+                ans.add(end+1);
+                return ans;
+            }
+            
+            
+            end++;    
+        }
+        
+        ans.add(-1);
+        return ans;
+    }
+}
+
 Given an unsorted array A of size N that contains only non-negative integers, find a continuous sub-array which adds to a given number S. In case of multiple subarrays, return the subarray which comes first on moving from left to right.
 Example 1:Input:
 N = 5, S = 12
