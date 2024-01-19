@@ -59,3 +59,10 @@ class Solution {
         return memo[row][col] = matrix[row][col]+min;
     }
 }
+
+
+The size of the input matrix as n. Since each cell in the matrix is processed exactly once, 
+and the recursion tree is pruned by memoization, the time complexity of the helper function is O(n^2). 
+Therefore, the overall time complexity of the minFallingPathSum function, which calls the helper function for
+each element in the first row of the matrix, is O(n^3). This is because for each element in the first row, the helper 
+ function is called, and the helper function itself has a time complexity of O(n^2).
