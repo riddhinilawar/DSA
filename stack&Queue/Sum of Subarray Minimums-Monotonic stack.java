@@ -86,3 +86,18 @@ class Pair{
         this.idx=idx;
     }
 }
+
+NOTE:Input with duplicates will trouble. Input
+arr =
+[17,55,82,55]
+Stdout
+-1 4 4 1 4
+0 3 2 1 2
+1 3 1 1 1
+0 4 1 3 3
+Output
+425
+Expected
+425
+
+In such cases we need to conside left or right side values, any one values as lesser than the current values while finding the next greater element.
