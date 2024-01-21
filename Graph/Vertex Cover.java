@@ -67,4 +67,6 @@ class Solution {
         return getMin(n, m, edges, 0, st);
     }
 }
-        
+TC : O(M*2^N) - Since for every edges i do call twice in worst case.
+
+SC: O(N)  - Because of HashSet
