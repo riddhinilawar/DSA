@@ -26,13 +26,16 @@ Constraints:
 
 class Solution {
     public int rob(int[] nums) {
-        int prev = 0;  // Represents the maximum value excluding the current house
-        int last = 0;  // Represents the maximum value including the current house
-        for (int curr : nums) {
-            int temp = last;
-            last = Math.max(prev + curr, last);
-            prev = temp;
+        int n=nums.length;
+        int last =0;
+        int secondLast=0;
+
+        for(int curr:nums){
+            int temp=last;
+            last=Math.max(secondLast+curr,last);
+            secondLast=temp;
         }
+        
         return last;
     }
 }
