@@ -22,18 +22,12 @@ Constraints:
 •	1 <= arr[i] <= 105
 Expected Time Complexity: O(N)
 Expected Auxiliary Space: O(1)
+ 
 class Solution {
     public int[] replaceElements(int[] arr) {
         
         int n = arr.length;
-
         int ans[] = new int[n]; 
-
-        if(n==1){
-            ans[0] = -1;
-            return ans;
-        }
-
         int max = arr[n-1];
         ans[n-1] = -1;
 
