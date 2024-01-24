@@ -27,3 +27,17 @@ class Solution {
         return ans;
     }
 }
+
+
+================================================================
+
+import java.util.stream.*;
+
+class Solution {
+    public int commonFactors(int a, int b) {
+        return (int)Stream.iterate(1, n -> n + 1)
+            .limit(Math.min(a, b))
+            .filter(n -> a % n == 0 && b % n == 0)
+            .count();
+    }
+}
