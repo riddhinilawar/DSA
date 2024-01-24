@@ -31,22 +31,12 @@ class Solution {
         int count=0;
         int j=0;
 
-        for(int i=0; i<g.length; i++)
-        {
-            if(j<s.length && g[i] <= s[j])
-            {
-                count++;
-                j++;
-                continue;
-            }
-
-            while(j<s.length && g[i] > s[j])
-            {
+        for(int i=0; i<g.length; i++){
+            while(j<s.length && g[i] > s[j]){
                 j++;
             }
 
-            if(j<s.length && g[i] <= s[j])
-            {
+            if(j<s.length && g[i] <= s[j]){
                 count++;
                 j++;
             }
