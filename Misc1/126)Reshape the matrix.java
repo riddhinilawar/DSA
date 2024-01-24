@@ -19,20 +19,17 @@ Constraints:
 •	1 <= r, c <= 300
 Expected Time Complexity: O(M*N)
 Expected Auxiliary Space: O(1)
+
+ 
 class Solution {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
-         int ans[][] = new int[r][c];
-        if((mat.length * mat[0].length)>r*c)
+        int ans[][] = new int[r][c];
+        if((mat.length * mat[0].length)!=r*c)
             return mat;
         
-        if(mat.length <=r && mat[0].length <= c)
-            return mat;
-
         int new_number=0;
-        for(int i=0 ; i<mat.length ; i++)
-        {
-            for(int j=0; j<mat[0].length; j++)
-            {
+        for(int i=0 ; i<mat.length ; i++){
+            for(int j=0; j<mat[0].length; j++){
                 ans[new_number/c][new_number%c]=mat[i][j];
                 new_number++;
             }
