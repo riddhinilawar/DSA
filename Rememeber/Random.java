@@ -63,5 +63,7 @@ public int getRandom() {
     return number;
 }
 ------------------------------------------------------------------------------------
-
+Random rnd;
+rnd=new Random();
+ int idx=rnd.nextInt(arr.length);
     
