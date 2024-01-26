@@ -48,7 +48,9 @@ class GenerateRandom {
 
 ---------------------------------------------------------------------------
 reverse sampling --> if(Math.random() <= (1.0/scope))
+s a method for generating random numbers from any probability distribution by using its inverse cumulative distribution F−1(x).
 
+    
 public int getRandom() {
     int scope=1, number=0;
     ListNode curr=this.head;
