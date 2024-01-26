@@ -60,3 +60,7 @@ class Solution {
         return ans;
     }
 }
+
+
+Note:For 2nd test case, [4,1,5,20,3]. If 20 can transform to 5 by two operations, why can't we mutiply 1 twice, it would become [4,4,5,5,3], then min dev would be 2. Isn't that allowed?
+ -->Because only odd number can be multiply by 2. 1 can only turn in to 2, or back to 1, not 4
