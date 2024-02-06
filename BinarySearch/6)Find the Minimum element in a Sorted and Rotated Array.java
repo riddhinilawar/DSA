@@ -1,12 +1,64 @@
-Given an array arr[] which is sorted and rotated, the task is to find an element in the rotated array (with duplicates) in O(log n) time. 
-Note: Print the index where the key exists. In case of multiple answer print any of them
+153. Find Minimum in Rotated Sorted Array
 
-Examples: 
 
-Input: arr[] = {3, 3, 3, 1, 2, 3}, key = 3 
-Output: 0 
-arr[0] = 3
+class Solution {
+    public int findMin(int[] arr) {
+        int start=0,end=arr.length-1,ans=Integer.MAX_VALUE;
+        
+        while(start<=end){
+            if(arr[start]<=arr[end]){
+                ans=Math.min(ans,arr[start]);
+                break;
+            }
+            
+            int mid=start+(end-start)/2;
+            if(arr[start]<=arr[mid]){
+                ans=Math.min(ans,arr[start]);
+                start=mid+1;
+            }
+            else{
+                ans=Math.min(ans,arr[mid]);
+                end=mid-1;
+            }
+        }
+        return ans;
+    }
+}
+  
+Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
 
-Input: arr[] = {3, 3, 3, 1, 2, 3}, key = 11 
-Output: -1 
-11 is not present in the given array. 
+[4,5,6,7,0,1,2] if it was rotated 4 times.
+[0,1,2,4,5,6,7] if it was rotated 7 times.
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+
+Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+
+You must write an algorithm that runs in O(log n) time.
+
+ 
+
+Example 1:
+
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: The original array was [1,2,3,4,5] rotated 3 times.
+Example 2:
+
+Input: nums = [4,5,6,7,0,1,2]
+Output: 0
+Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
+Example 3:
+
+Input: nums = [11,13,15,17]
+Output: 11
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 5000
+-5000 <= nums[i] <= 5000
+All the integers of nums are unique.
+nums is sorted and rotated between 1 and n times.
+
