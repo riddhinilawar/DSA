@@ -39,3 +39,57 @@ class Solution{
         return true;
     }
 }
+=========================================Recursive Approach - TLE,GFG===============================================
+
+class Solution{
+    ArrayList<Long> absDifOne(long N){
+        ArrayList<Long> list = new ArrayList<>();
+        for(long i=1;i<=9;i++){
+            helper(i,list,N);
+        }
+        Collections.sort(list);
+        return list;
+    }
+    void helper(long curr,ArrayList<Long> list,long n){
+        if(curr>n){
+            return;
+        }
+        if(curr>9){
+            list.add(curr);
+        }
+        if(curr%10!=0){
+            helper((curr*10)+(curr%10-1),list,n);
+        }
+        if(curr%10!=9){
+            helper((curr*10)+(curr%10+1),list,n);
+        }
+    }
+}
+=================================================BEST SOLUTION==============================================
+class Solution{
+    ArrayList<Long> absDifOne(long N){
+        ArrayList<Long> list = new ArrayList<>();
+        Queue<Long> q = new LinkedList<>();
+        for(long i=1;i<=9;i++){
+            q.add(i);
+        }
+        while(!q.isEmpty()){
+            long curr=q.remove();
+            if(curr>N){
+                continue;
+            }
+            if(curr>9){
+                list.add(curr);
+            }
+            if(curr%10!=0){
+                q.add((curr*10)+(curr%10-1));
+            }
+            if(curr%10!=9){
+                q.add((curr*10)+(curr%10+1));
+            }
+        }
+        
+        return list;
+    }
+
+}
