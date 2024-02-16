@@ -73,3 +73,20 @@ Inside this loop, the division operation n = n / i and addition operation operat
 The loop might terminate earlier if n becomes 1.
 Thus, the overall time complexity of the minSteps method is O(n log log n) + O(n), which simplifies to O(n log log n).
  */
+===============================================================================
+
+
+ class Solution {
+    public int minSteps(int n) {
+        if(n == 1) return 0;
+        int min = n;
+        for(int i = 2; i < n; i++) {
+            if(n % i == 0) {
+                min = Math.min(min, n / i + minSteps(i));
+            }
+        }
+        return min;
+    }
+}
+
+TC:O(n!)roughly..as it won't goes in all the i
