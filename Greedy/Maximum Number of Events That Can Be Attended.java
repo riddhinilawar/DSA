@@ -1,9 +1,12 @@
 1353. Maximum Number of Events That Can Be Attended
-Solved
-Medium
-Topics
-Companies
-Hint
+
+Note:: 
+ 
+Create the array of (max+2 size) to know on which day that event can be attanded. 
+Find the next day from the start on that event can be attended.
+if the event day is greater than end day then do nothing
+else count++, and mark the [event attend] day which the next possible day on which event can be attended.
+ 
 You are given an array of events where events[i] = [startDayi, endDayi]. Every event i starts at startDayi and ends at endDayi.
 
 You can attend an event i at any day d where startTimei <= d <= endTimei. You can only attend one event at any time d.
