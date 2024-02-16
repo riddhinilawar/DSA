@@ -1,5 +1,9 @@
 Flatten BST to sorted list
 
+Notes:Just to the DFS  got this the node which you want like -->left right then root, 
+and the node which you want add that in prev and remove all its links and continue
+the normal flow..same as peint the tree data in some traversal pre/post/in
+          
 You are given a Binary Search Tree (BST) with n nodes, each node has a distinct value assigned to it. The goal is to flatten the tree such that, the left child of each element points to nothing (NULL), and the right child points to the next element in the sorted list of elements of the BST (look at the examples for clarity). You must accomplish this without using any extra storage, except for recursive calls, which are allowed.
 
 Note: If your BST does have a left child, then the system will print a -1 and will skip it, resulting in an incorrect solution.
