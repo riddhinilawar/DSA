@@ -1,5 +1,7 @@
 337. House Robber III
 
+Note: post order traversal, get the last and second last node values , return the max(curr value + second last values, last values) to get the best possible answer 
+
 The thief has found himself a new place for his thievery again. There is only one entrance to this area, called root.
 
 Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that all houses in this place form a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
