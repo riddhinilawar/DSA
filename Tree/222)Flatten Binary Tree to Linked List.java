@@ -23,6 +23,54 @@ Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 class Solution {
     private TreeNode prev = null;
 
+=========================================================================================================================
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    TreeNode prev=null;
+    TreeNode head=null;
+    public void flatten(TreeNode root) {
+        helper(root);
+        root=head;
+    }
+    public void helper(TreeNode curr){
+        if(curr==null){
+            return;
+        }
+        
+        TreeNode temp1=curr.left;
+        TreeNode temp2=curr.right;
+
+        curr.left=null;
+        curr.right=null;
+        
+        if(prev==null){
+            prev=curr;
+            head=prev;
+        }
+        else{
+            prev.right=curr;
+            prev=prev.right;
+        }
+        helper(temp1);
+        helper(temp2);
+    }
+}
+==========================================================================================================================
 public void flatten(TreeNode root) {
     if (root == null)
         return;
