@@ -1,5 +1,8 @@
 1481. Least Number of Unique Integers after K Removals
 
+Note: here count plays the major role, take tha array of len n and increment the 
+lengths(total characters present on particular type, which we will get by sorting and counting).
+
 Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements.
 
  
