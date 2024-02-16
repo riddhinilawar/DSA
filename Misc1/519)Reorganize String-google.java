@@ -1,5 +1,6 @@
 767. Reorganize String
-Node:- Need to find the max freq and check weather it can be kept in alternating way in a string and also others will be managed in the remaining positions.
+Node:- Need to find the max freq and check weather it can be kept in alternating way
+ in a string and also others will be managed in the remaining positions.
 Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
 
 Return any possible rearrangement of s or return "" if not possible.
