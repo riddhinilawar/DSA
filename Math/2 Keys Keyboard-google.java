@@ -26,25 +26,9 @@ Constraints:
 
 1 <= n <= 1000
 
-
-  class Solution {
+class Solution {
     public int minSteps(int n) {
         if(n==1)return 0;
-        boolean isPrime[]=new boolean[n+1];
-        Arrays.fill(isPrime,true);
-
-        for(int i=2;i*i<=n;i++){
-            if(isPrime[i]){
-                for(int j=i*i;j<=n;j+=i){
-                    isPrime[j]=false;
-                }
-            }
-        }
-
-        if(isPrime[n]){
-            return n;
-        }
-
         int operations=0;
 
         while(true){
@@ -66,12 +50,12 @@ Constraints:
 /**
 The time complexity of the provided minSteps method can be analyzed as follows:
 
-The initial loop that sets up the isPrime array runs in O(n log log n) time, which comes from the Sieve of Eratosthenes algorithm.
+
 The while loop iterates until n becomes 1, and within this loop:
 The inner loop runs for each factorization of n, and it iterates up to n/2 which is approximately O(n) times in the worst case.
 Inside this loop, the division operation n = n / i and addition operation operations += i are both constant time operations.
 The loop might terminate earlier if n becomes 1.
-Thus, the overall time complexity of the minSteps method is O(n log log n) + O(n), which simplifies to O(n log log n).
+Thus, the overall time complexity of the minSteps method is O(n), which simplifies to O(n).
  */
 ===============================================================================
 
