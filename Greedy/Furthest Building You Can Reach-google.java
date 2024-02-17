@@ -1,4 +1,9 @@
 1642. Furthest Building You Can Reach
+
+Note:: Just go with the bricks and store the bricks used in pq..when no bricks are left..start going ahead with 
+ladders ..used the ladders when max bricks are being used..this yu will get from the pq..if no ladders left or
+bricks couldn't able to satify the condition means you can't move forward.
+
 You are given an integer array heights representing the heights of buildings, some bricks, and some ladders.
 
 You start your journey from building 0 and move to the next building by possibly using bricks or ladders.
