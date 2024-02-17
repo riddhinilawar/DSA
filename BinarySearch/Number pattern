@@ -1,0 +1,38 @@
+pattern 1 
+
+1 ->1
+2 ->2
+3 ->3
+4 ->5
+5 ->7..
+
+while(low<=high){
+  mid=..
+  if(helper(mid)>=givenVal){
+     ans=mid;
+     high=mid-1;
+  }
+  else{
+    low=mid+1;
+  }
+}
+
+===============================================
+pattern 2 
+
+1 ->10
+2 ->9
+3 ->8
+4 ->6
+5 ->4..
+
+while(low<=high){
+  mid=..
+  if(helper(mid)<=givenVal){
+     ans=mid;
+     high=mid-1;
+  }
+  else{
+    low=mid+1;
+  }
+}
