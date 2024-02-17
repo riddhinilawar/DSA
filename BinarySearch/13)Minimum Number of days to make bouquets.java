@@ -87,3 +87,62 @@ Constraints:
 •	1 <= k <= n•	
 Expected Time Complexity: O(logn)
 Expected Auxiliary Space: O(1)
+
+
+    class Solution {
+    public int minDays(int[] bloomDay, int m, int k) {
+        if((long)bloomDay.length<((long)m*(long)k))
+            return -1;
+        
+        int low=1;
+        int high=bloomDay[0];
+        int ans=1;
+        
+        for(int day:bloomDay)
+            high=Math.max(high,day);
+
+        while(low<=high){
+            int mid=low+(high-low)/2;
+ 
+            if(helper(bloomDay,k,mid)>=m){
+                //System.out.println("In 1");
+                high=mid-1;
+                ans=mid;
+            }
+            else{
+                //System.out.println("In 2");
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public int helper(int[] bloomDay, int adjFlow,int mid){
+        int bouquets=0;
+        int count=0;
+        for(int i=0;i<bloomDay.length;i++){
+            if(i==0 && bloomDay[i]<=mid){
+                count=1;
+                if(count==adjFlow){
+                    count=0;
+                    bouquets++;
+                }
+            }
+            else if(bloomDay[i]<=mid && bloomDay[i-1]<=mid){
+                count++;
+                if(count==adjFlow){
+                    count=0;
+                    bouquets++;
+                }
+            }
+            else if(bloomDay[i]<=mid){
+                count=1;
+                if(count==adjFlow){
+                    count=0;
+                    bouquets++;
+                }
+            }
+        }
+        //System.out.println(mid+" "+bouquets);
+        return bouquets;
+    }
+}
