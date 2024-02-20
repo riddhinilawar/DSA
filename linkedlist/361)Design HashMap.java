@@ -149,3 +149,9 @@ class MyHashMap {
     }
 }
 
+HashMap is a specific implementation of a HashMap that stores the key-value pairs directly within an array. In an internal HashMap, the key-value pairs are stored in an array called a hash table. The array is indexed using a hash function that converts each key into an index in the array. When a new key-value pair is added to the HashMap, the key is hashed to determine its index in the array. If there is already a key stored at that index, HashMap uses a collision resolution strategy to find an empty index to store the new key-value pair.
+
+Collision Resolution Strategy
+Collision resolution is the process of handling situations where two or more data items are mapped to the same hash value. A common collision resolution strategy is to use one of the following methods:
+
+Chaining: A collision resolution strategy in which each bucket in the hash table is a linked list, and collisions are resolved by adding the new item to the end of the list.
