@@ -42,3 +42,12 @@ Constraints:
         }   
     }
 }
+The time complexity of the given solution is O(1) for the sequentialDigits function and O(1) for the helper function.
+
+Here's the breakdown:
+
+The sequentialDigits function iterates over the digits from 1 to 9 (a constant number of iterations). Inside the loop, it calls the helper function. So, the time complexity for the sequentialDigits function is O(1).
+
+The helper function recursively generates sequential digits. However, the depth of recursion is limited by the value of the variable high, as once curr exceeds high, the recursion stops. Since the range of numbers between low and high is limited, the depth of recursion won't exceed a constant value.
+
+Considering the limited range of digits and the bounded recursion depth, we can conclude that both functions have a time complexity of O(1).
