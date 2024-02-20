@@ -1,4 +1,9 @@
 139. Word Break
+
+Time Complexity: The time complexity of the above code will be O(2^n).
+Auxiliary Space: The space complexity will be O(n) as we are using recursion and the recursive call stack will take O(n) space.
+
+ 
 Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
 
 Note that the same word in the dictionary may be reused multiple times in the segmentation.
@@ -188,3 +193,24 @@ class Solution {
         }
     }
 }
+
+However, considering the total number of substring operations performed over all recursive calls, the total time taken for substring operations can be approximated to O(n^2).
+
+Combining these factors, the overall time complexity of the solve function is O(n^3), where n is the length of the input string s.
+
+Since the wordBreak function calls the solve function once, its time complexity is also O(n^3), where n is the length of the input string s.
+===================================================================================================================
+Google | Onsite | Word Break III
+
+
+ Given a sentence without spaces s and a dictionary dict, you have to find the way to break the sentence in the minimum number of individual dictionary words. If there're multiple solutions, return any of them.
+
+Example 1:
+
+Input: s = "bedbathandbeyand", dict = ["bed", "bath", "bat", "and", "hand", "bey", "beyand"]
+Output: ["bed", "bath", "and", "beyand"] or ["bed", "bat", "hand", "beyand"]
+Example 2:
+
+Input: s = "catsandog", dict = ["cats", "dog", "sand", "and", "cat"]
+Output: []
+ 
