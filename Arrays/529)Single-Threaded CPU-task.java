@@ -1,6 +1,75 @@
 1834. Single-Threaded CPU
 
+Note::
+ Step1)create the task class.
+ Step2)create task array of int[] size 3 to store id with tasks details.
+ Step3)create priority queue to store the next task to be scheduled.
+ Step4)while(priority queue is not empty)
+ -->put all the available task at current tiem in pq.
+ -->process the task
+ -->increase the currentime
+ -->put all the available task at current tiem in pq.
+ -->still pq is empty set the currentime to next available start time
 
+class Solution {
+    public int[] getOrder(int[][] inputTasks) {
+        int totalTasks=inputTasks.length;
+        int[] taskProcessingOrder = new int[totalTasks];
+        int taskProcessingOrderIdx=0;
+
+        int tasks[][]=new int[totalTasks][3];
+        for(int i=0;i<totalTasks;i++){
+            tasks[i][0]=inputTasks[i][0];
+            tasks[i][1]=inputTasks[i][1];
+            tasks[i][2]=i;
+        }
+        Arrays.sort(tasks,(task1,task2)->task1[0]-task2[0]);
+
+        PriorityQueue<Task> nextTask = new PriorityQueue<>
+        ((task1,task2)->(task1.processingTime==task2.processingTime)?task1.taskId-task2.taskId:task1.processingTime-task2.processingTime);
+
+        int taskIdx=1;
+        int currentTime=tasks[0][0];
+        nextTask.add(new Task(tasks[0][2],tasks[0][0],tasks[0][1]));
+
+        while(!nextTask.isEmpty()){
+
+            while(taskIdx<totalTasks && tasks[taskIdx][0]<=currentTime){
+                nextTask.add(new Task(tasks[taskIdx][2],tasks[taskIdx][0],tasks[taskIdx][1]));
+                taskIdx++;
+            }
+            
+            Task task=nextTask.remove();
+            int processingTaskId=task.taskId;
+            int processingTaskTime=task.processingTime;
+
+            taskProcessingOrder[taskProcessingOrderIdx++]=processingTaskId;
+            currentTime+=processingTaskTime;
+
+            if(taskIdx<totalTasks && nextTask.isEmpty() && currentTime<tasks[taskIdx][0]){
+                currentTime=tasks[taskIdx][0];
+            }
+
+            while(taskIdx<totalTasks && tasks[taskIdx][0]<=currentTime){
+                nextTask.add(new Task(tasks[taskIdx][2],tasks[taskIdx][0],tasks[taskIdx][1]));
+                taskIdx++;
+            }
+        }
+
+        return taskProcessingOrder;
+    }
+}
+class Task{
+    int taskId;
+    int triggerAt;
+    int processingTime;
+    Task(int taskId,int triggerAt,int processingTime){
+        this.taskId=taskId;
+        this.triggerAt=triggerAt;
+        this.processingTime=processingTime;
+    }
+}
+ 
 You are given n​​​​​​ tasks labeled from 0 to n - 1 represented by a 2D integer array tasks, where tasks[i] = [enqueueTimei, processingTimei] means that the i​​​​​​th​​​​ task will be available to process at enqueueTimei and will take processingTimei to finish processing.
 
 You have a single-threaded CPU that can process at most one task at a time and will act in the following way:
