@@ -82,3 +82,8 @@ class Solution {
         return rp;
     }
 }
+[ 6,13,21,25]  [1,2,3,5,7,9]
+ if i is at 6(0th index of first arr) and j is at 3(2nd index of second array) then ->
+6 is not greater than 3×2 but later elements are ..
+so we will miss out to count the pairs that are valid with 3 ...
+if we go with count inversion method
