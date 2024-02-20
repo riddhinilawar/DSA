@@ -1,5 +1,6 @@
 Given an integer array nums, return the number of reverse pairs in the array.
-
+tc:(2n)*logn
+sc;n
 A reverse pair is a pair (i, j) where:
 
 0 <= i < j < nums.length and
