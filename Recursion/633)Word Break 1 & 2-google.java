@@ -116,3 +116,75 @@ class Solution {
         return dp[start]=0;
     }
 }
+
+
+
+
+
+
+140. Word Break II
+
+Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+ 
+
+Example 1:
+
+Input: s = "catsanddog", wordDict = ["cat","cats","and","sand","dog"]
+Output: ["cats and dog","cat sand dog"]
+Example 2:
+
+Input: s = "pineapplepenapple", wordDict = ["apple","pen","applepen","pine","pineapple"]
+Output: ["pine apple pen apple","pineapple pen apple","pine applepen apple"]
+Explanation: Note that you are allowed to reuse a dictionary word.
+Example 3:
+
+Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
+Output: []
+ 
+
+Constraints:
+
+1 <= s.length <= 20
+1 <= wordDict.length <= 1000
+1 <= wordDict[i].length <= 10
+s and wordDict[i] consist of only lowercase English letters.
+All the strings of wordDict are unique.
+Input is generated in a way that the length of the answer doesn't exceed 105.
+
+
+
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+
+        HashSet<String> set = new HashSet<>();
+        for(int i=0;i<wordDict.size();i++)
+            set.add(wordDict.get(i));
+
+        ArrayList<String> ans = new ArrayList<>();
+
+        solve(0,s,set,ans,new ArrayList<String>());
+        
+        return ans;
+    }
+    public void solve(int start,String s, HashSet<String> set,ArrayList<String> ans,ArrayList<String> temp){
+        if(start==s.length()){
+            StringBuilder sb = new StringBuilder();
+            for(String t:temp){
+                sb.append(t);
+                sb.append(" ");
+            }
+            ans.add(sb.toString().substring(0,sb.length()-1));
+        }
+        
+        for(int end=start+1;end<=s.length();end++){
+            if(set.contains(s.substring(start,end))==true){
+                temp.add(s.substring(start,end));
+                solve(end,s,set,ans,temp);
+                temp.remove(temp.size()-1);
+            }
+        }
+    }
+}
