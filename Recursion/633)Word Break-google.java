@@ -57,3 +57,62 @@ class Solution {
         return dp[curr]=0;
     }
 }
+
+
+===========================================normal recursion===============================
+
+ class Solution{
+    public static int wordBreak(String s, ArrayList<String> dictionary ){
+        
+        HashSet<String> set = new HashSet<>();
+        for(String word:dictionary){
+            set.add(word);
+        }
+        
+        return helper(0,s.length(),s,set);
+    }
+    public static int helper(int start,int n,String s,HashSet<String> set){
+        if(start==n){
+            return 1;
+        }
+        
+        for(int end=start+1;end<=n;end++){
+            if(set.contains(s.substring(start,end))){
+                int temp=helper(end,n,s,set);
+                if(temp==1)return 1;
+            }
+        }
+        
+        return 0;
+    }
+}
+
+
+======================================memoization=================================
+
+ class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>();
+        for(int i=0;i<wordDict.size();i++)
+            set.add(wordDict.get(i));
+        int dp[]=new int[s.length()];
+        Arrays.fill(dp,-1);
+        return (solve(0,s,set,dp)==1?true:false);
+    }
+    public int solve(int start,String s, HashSet<String> set,int dp[]){
+        if(start==s.length())
+            return 1;
+
+        if(dp[start]!=-1)
+            return dp[start];
+
+        for(int end=start+1;end<=s.length();end++){
+            if(set.contains(s.substring(start,end))==true){
+                if(solve(end,s,set,dp)==1)
+                    return dp[start]=1;
+            }
+        }
+
+        return dp[start]=0;
+    }
+}
