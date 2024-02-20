@@ -2,7 +2,19 @@ Expected Time Complexity:Best : O(NlogN)
 Average: O(NlogN) 
 Worst: O(N2)
 Expected Auxiliary Space: O(logN)-in worst case
+Best case occurs generally when the list is in completely random manner.
 
+Example : 1 4 2 9 5 7 3 4 10 2
+
+complexity : O(n logn)
+
+Worst case occurs when the array is already sorted either in ascending or descending order.
+
+complexity : O(n^2)
+
+Example : 1 2 3 4 5 6 7 8 9 10
+
+or 10 9 8 7 6 5 4 3 2 1
 Quick Sort - gfg
 package sort;
 
