@@ -1,5 +1,8 @@
 787. Cheapest Flights Within K Stops
+Follow up questions:Google mostly prefer Graphs, Trees and String questions.
 
+Given 2 cities you have to find the minimum price of flights to go from 1 city to another. You can change a maximum of 2 cities in between. You are given price between 2 cities
+If there is one thread changing the prices of flights and multiple threads reading the flights price map to calculate minimum price, What will you do?
 
 There are n cities connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with cost pricei.
 You are also given three integers src, dst, and k, return the cheapest price from src to dst with at most k stops. If there is no such route, return -1.
