@@ -1,5 +1,8 @@
 Sum of bit differences
 
+Note::multiply 2*setbit*unsetbit for every location
+TC:O(N*17)~O(N)  
+SC:O(17)~O(1)
 
 Given an array integers arr[], containing n elements, find the sum of bit differences between all pairs of element in the array. Bit difference of a pair (x, y) is the count of different bits at the same positions in binary representations of x and y.
 For example, bit difference for 2 and 7 is 2. Binary representation of 2 is 010 and 7 is 111 respectively and the first and last bits differ between the two numbers.
