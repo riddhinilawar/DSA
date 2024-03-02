@@ -1,0 +1,51 @@
+Write a class that does the following:
+1. insert range
+2. query  for a point
+
+Example:
+insert(2,3) 
+insert(9,15)
+query(0) -> false
+query(3) -> true
+
+Note: ranges can be overlapping 
+Solution
+
+class RangeModule {
+    private TreeMap<Integer, Integer> map;
+
+    public RangeModule() {
+        map = new TreeMap<>();
+    }
+	// TC - O(n) 
+    public void insert(int left, int right) {
+        if (map.size() == 0) {
+            map.put(left, right);
+            return;
+        }
+
+        Integer start = map.floorKey(left);
+        if (start == null) {
+            start = map.ceilingKey(left);
+        }
+        while (start != null && start <= right) {
+            int end = map.get(start);
+            if (end >= left) {
+                map.remove(start);
+                if (start < left) {
+                    left = start;
+                }
+                if (end > right) {
+                    right = end;
+                }
+            }
+            start = map.ceilingKey(start + 1);
+        }
+        map.put(left, right);
+    }
+	// TC - O(logn)
+    public boolean query(int point) { 
+        Integer start = map.floorKey(point);
+        return start != null && point <= map.get(start);
+    }
+}
