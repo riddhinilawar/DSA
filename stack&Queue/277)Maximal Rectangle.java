@@ -1,7 +1,8 @@
 85. Maximal Rectangle
 Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
 
- 
+Note:: keep the large element on small in the stack..if small element tries to sit on large element 
+then pop out all the largest element and to calculate the area take the help of last element in the stack that is peek element 
 
 Example 1:
 
