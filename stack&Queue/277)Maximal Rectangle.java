@@ -53,10 +53,10 @@ public class Solution {
                 
                 //if (i<cLen)System.out.println(row+" "+i+" "+h[i]+" "+matrix[row][i]+s);
                 int area=0;
-                if (s.isEmpty()||h[s.peek()]<=h[i])
+                if (s.isEmpty()||h[s.peek()]<h[i])
                     s.push(i);
                 else {
-                    while(!s.isEmpty()&&h[i]<h[s.peek()]){
+                    while(!s.isEmpty()&&h[i]<=h[s.peek()]){
                         int top = s.pop();
                         area = h[top]*(s.isEmpty()?i:(i-s.peek()-1));
                         if (area>max)
