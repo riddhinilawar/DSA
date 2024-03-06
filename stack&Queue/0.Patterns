@@ -4,5 +4,5 @@ Stack:
 3)next greater
 4)evaluate expressions-BOADMASS RULE (Convert to postfix and then normal evaluation)
 5)Asteroid collision
-6)Maximum rectangle-Find max common possible
+6)Maximum rectangle-Find max common possible - check with peek while removeing --[smaller to larger]
 7)Decode string with brackets
