@@ -7,4 +7,4 @@ Stack:
 6)Maximum rectangle-Find max common possible - check with peek while removeing --[smaller to larger]
 7)Decode string with brackets
 8)monotonic stack to get the next greater element and find the subarray possible
-10)Maximum of minimum for every window size
+9)Maximum of minimum for every window size
