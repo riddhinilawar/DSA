@@ -43,3 +43,11 @@ Time Complexity: O(N)    Space Complexity: O(1)
 Solution 2: Using Binary Exponentiation ,Time Complexity: O(log n)        Space Complexity: O(1)
 Approach: Initialize ans as 1.0  and store a duplicate copy of n i.e nn using to avoid overflow
 Check if nn is a negative number, in that case, make it a positive number.Keep on iterating until nn is greater than zero, now if nn is an odd power then multiply x with ans ans reduce nn by 1. Else multiply x with itself and divide nn by two.Now after the entire binary exponentiation is complete and nn becomes zero, check if n is a negative value we know the answer will be 1 by and.
+
+
+Binary Exponentiation
+Intuition: While calculating (n^k), binary exponentiation relies on whether n is even or odd.
+
+If k is even (nk) can be written as  (n2)k/2. As we can see that computation steps were reduced from k to k/2 in just one step.
+
+If k is odd (nk) can be written as n.(n)k-1, so now  (k-1) is even.
