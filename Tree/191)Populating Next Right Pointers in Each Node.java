@@ -56,3 +56,34 @@ class Solution {
         return root;
     }
 }
+================================================MOST OPTIMAL(WON'T RUN IT TREE ISN'T COMPLETELY FILLED)====================================
+  class Solution {
+    public Node connect(Node root) {
+
+        if(root == null)return null;
+
+        Node l = root.left;
+        Node c = root;
+
+        while(c!= null && l!=null)
+        {
+            c.left.next = c.right;
+
+            if(c.next != null)
+            {
+                c.right.next = c.next.left;
+            }
+
+            c=c.next;
+
+            if(c==null)
+            {
+                c = l;
+                l = c.left;
+            }
+        }
+
+        return root;
+        
+    }
+}
