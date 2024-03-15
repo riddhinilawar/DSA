@@ -1,0 +1,78 @@
+Sorting larger file with smaller RAM
+
+
+Suppose we have to sort a 1GB file of random integers and the available ram size is 200 Mb, how will it be done? The easiest way to do this is to use external sorting. We divide our source file into temporary files of size equal to the size of the RAM and first sort these files. Assume 1GB = 1024MB, so we follow following steps.
+Divide the source file into 5 small temporary files each of size 200MB (i.e., equal to the size of ram).
+Sort these temporary files one bye one using the ram individually (Any sorting algorithm : quick sort, merge sort).
+Now we have small sorted temporary files as shown in the image below.
+
+https://www.geeksforgeeks.org/sorting-larger-file-with-smaller-ram/
+
+Figure – Dividing source file in smaller sorted temp files
+
+Now we have sorted temporary files.
+Pointers are initialized in each file
+A new file of size 1GB (size of source file) is created.
+First element is compared from each file with the pointer.
+Smallest element is copied into the new 1GB file and pointer gets incremented in the file which pointed to this smallest element.
+Same process is followed till all pointers have traversed their respective files.
+When all the pointers have traversed, we have a new file which has 1GB of sorted integers.
+
+================================================================================================================
+
+import java.util.*;
+
+public class FileSort {
+    
+    public static List<Integer> merge(List<Integer> l1, List<Integer> l2) {
+        // Two-pointer approach
+        int i = 0, j = 0;
+        List<Integer> mergeList = new ArrayList<>();
+        
+        while (i < l1.size() && j < l2.size()) {
+            if (l1.get(i) > l2.get(j)) {
+                mergeList.add(l2.get(j));
+                j++;
+            } else {
+                mergeList.add(l1.get(i));
+                i++;
+            }
+        }
+        
+        // Process remaining elements if any
+        while (i < l1.size()) {
+            mergeList.add(l1.get(i));
+            i++;
+        }
+        
+        while (j < l2.size()) {
+            mergeList.add(l2.get(j));
+            j++;
+        }
+        
+        return mergeList;
+    }
+    
+    public static void main(String[] args) {
+        HashMap<Integer, List<Integer>> files = new HashMap<>();
+        files.put(1, Arrays.asList(1, 4, 5));
+        files.put(2, Arrays.asList(1, 3, 4));
+        files.put(3, Arrays.asList(2, 6));
+        
+        // Assuming files are not sorted internally
+        for (Map.Entry<Integer, List<Integer>> entry : files.entrySet()) {
+            Collections.sort(entry.getValue());
+        }
+        
+        // Internal sorting done
+        
+        List<Integer> curList = files.remove(files.keySet().iterator().next());
+        
+        while (!files.isEmpty()) {
+            List<Integer> nextList = files.remove(files.keySet().iterator().next());
+            curList = merge(curList, nextList);
+        }
+        
+        System.out.println(curList);
+    }
+}
