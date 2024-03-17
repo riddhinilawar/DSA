@@ -39,3 +39,35 @@ Constraints:
 
 The number of nodes in the binary tree is in the range [1, 10^5].
 Each node's value is between [-10^4, 10^4].
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int goodNodes(TreeNode root) {
+        return helper(root,root.val,root.val);
+    }
+    public int helper(TreeNode curr,int max,int rootval){
+        if(curr==null)  
+            return 0;
+
+        int isGood=(curr.val>=max)?1:0;
+        int maxVal=Math.max(max,curr.val);
+
+        int left=helper(curr.left,maxVal, rootval);
+        int right=helper(curr.right,maxVal, rootval);
+
+        return left+right+isGood;
+    }
+}
