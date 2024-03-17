@@ -122,11 +122,23 @@ class Solution {
     }
 }
 
+===================================================================================
+If memoization is not used:Time Limit Exceeded
+35 / 46 testcases passed
+submitted at Mar 17, 2024 22:39
 
+Editorial
+Last Executed Input
+Use Testcase
+s =
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+wordDict =
+["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
 
+====================================================================================
 
-
-
+ Done with trie on leetcode 17/03/2024
+====================================================================================
 140. Word Break II
 
 Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
