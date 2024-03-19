@@ -35,8 +35,43 @@ Constraints:
 -104 <= val <= 104
 At most 104 calls will be made to add.
 It is guaranteed that there will be at least k elements in the array when you search for the kth element.
+=========================================MORE OPTIMAL======================================
 
 
+class KthLargest {
+    PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->a-b);
+    int kth=0;
+    int max=Integer.MIN_VALUE;
+    boolean flag=false;
+    public KthLargest(int k, int[] nums) {
+        kth=k;
+        for(int i:nums)
+            pq.add(i);
+
+        int temp=nums.length-k;
+        while(temp>0){
+            pq.remove();
+            temp--;
+        }
+        if(pq.isEmpty())flag=true;
+    }
+    
+    public int add(int val) {
+        if(kth==1 && flag==true){
+            max=Math.max(max,val);
+            return max;
+        }
+
+        pq.add(val);
+        if(pq.size()>kth)
+        pq.remove();
+        return pq.peek();
+    }
+}
+
+
+ 
+===============================================================================================
 class KthLargest {
     PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->a-b);
     int kth=0;
