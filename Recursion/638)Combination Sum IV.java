@@ -44,10 +44,6 @@ class Solution {
         if(target==0){
             return 1;
         }
-        if(indx==arr.length){
-            if(target==0)return 1;
-            return 0;
-        }
         //if it is already computed 
         if(dp[target]!=-1)return dp[target];
         //do all stuff on that index
