@@ -71,3 +71,22 @@ class Edge implements Comparable<Edge> {
         return this.weight - compareEdge.weight;
     }
 };
+
+
+--------------------------------------------------------------------------------------------
+
+
+class meetingComparator implements Comparator<meeting>
+{
+    @Override
+    public int compare(meeting o1, meeting o2) 
+    {
+        if (o1.end < o2.end)
+            return -1;
+        else if (o1.end > o2.end)
+            return 1;
+        else if(o1.pos < o2.pos)
+            return -1;
+        return 1; 
+    }
+}
