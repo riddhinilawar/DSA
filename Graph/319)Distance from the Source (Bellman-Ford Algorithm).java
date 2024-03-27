@@ -1,7 +1,7 @@
 Distance from the Source (Bellman-Ford Algorithm)
 
  Note:
-1)Can be applied on DG(Directed Graph)
+1)Can be applied only on DG(Directed Graph)
 2)Used to get the shortest distance between source node and all the other nodes in the graph
 
  Hint:
