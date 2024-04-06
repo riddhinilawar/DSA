@@ -116,78 +116,93 @@ tasks.length == n
 1 <= n <= 105
 1 <= enqueueTimei, processingTimei <= 109
 
-
+=========================================================================Another Solution================================================
 class Solution {
-    public int[] getOrder(int[][] task) {
-        int n=task.length;
-        int tasks[][]=new int[n][3];
-        for(int i=0;i<n;i++){
-            tasks[i][0]=task[i][0];
-            tasks[i][1]=task[i][1];
-            tasks[i][2]=i;
+    public int[] getOrder(int[][] tasks) {
+        int totalTasks=tasks.length;
+        PriorityQueue<Task> minHeap = new PriorityQueue<>(new TaskComparatorProcessingTime());
+        Task sortedTasks[]=new Task[totalTasks];
+
+
+        for(int i=0;i<totalTasks;i++){
+            sortedTasks[i]=new Task(i,tasks[i][0],tasks[i][1]);
         }
-        Arrays.sort(tasks,(a,b)->a[0]-b[0]);
+        Arrays.sort(sortedTasks,new TaskComparatorEnqueueTime());
 
-        PriorityQueue<Task> pq = new PriorityQueue<>((a, b) -> a.processing == b.processing ? a.id - b.id : a.processing - b.processing);
+        // for(int i=0;i<totalTasks;i++){
+        //     System.out.println(sortedTasks[i].id+" "+sortedTasks[i].processTime+" "+sortedTasks[i].enqueueTime);
+        // }
         
-        int vis[]=new int[n];
-        int ans[]=new int[n];
-        int ansidx=0;
+        int ans[]=new int[totalTasks];
+        int ansIdx=0;
+        int time=sortedTasks[0].enqueueTime;
+        int ptr=0;
 
-        
+        while(minHeap.size()>0 || ptr<totalTasks){
+            while(ptr<totalTasks && sortedTasks[ptr].enqueueTime<=time){
+                minHeap.add(sortedTasks[ptr]);
+                ptr++;
+            }
 
-        for(int tsk=0;tsk<n;tsk++){
-            if(vis[tsk]==0){
-
-                int currtime=tasks[tsk][0];
-                int taskidx=tsk;
-
-                for(int i=taskidx;i<n;i++){
-                    if(currtime>=tasks[i][0]){
-                        pq.add(new Task(tasks[i][1],tasks[i][0],tasks[i][2]));
-                        vis[i]=1;
-                        if(i==n-1)taskidx=i+1;
-                    }
-                    else{
-                        taskidx=i;
-                        break;
-                    }
-                }
-
-            while(!pq.isEmpty()){
-
-                if(pq.peek().trigger > currtime)
-                    currtime = pq.peek().trigger;
-
-                Task t=pq.remove();
-                ans[ansidx]=t.id;
-                ansidx++;
-                currtime+=t.processing;
-
-                for(int i=taskidx;i<n;i++){
-                    if(currtime>=tasks[i][0]){
-                        pq.add(new Task(tasks[i][1],tasks[i][0],tasks[i][2]));
-                        vis[i]=1;
-                        if(i==n-1)taskidx=i+1;
-                    }
-                    else{
-                        taskidx=i;
-                        break;
-                    }
-                }
-            }   
+            if(minHeap.size()==0){
+                time=sortedTasks[ptr].enqueueTime;
+            }
+            else{
+                Task t =minHeap.remove();
+                ans[ansIdx++]=t.id;
+                time+=t.processTime;
             }
         }
+
         return ans;
     }
+
+    
+     
 }
+class TaskComparatorEnqueueTime implements Comparator<Task>{
+    @Override
+    public int compare(Task task1, Task task2) {
+        if(task1.enqueueTime<task2.enqueueTime){
+            return -1;
+        }
+        else if(task1.enqueueTime>task2.enqueueTime){
+            return 1;
+        }
+        else if(task1.id<task2.id){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+    }
+}
+
+class TaskComparatorProcessingTime implements Comparator<Task>{
+    @Override
+    public int compare(Task task1, Task task2) {
+        if(task1.processTime<task2.processTime){
+            return -1;
+        }
+        else if(task1.processTime>task2.processTime){
+            return 1;
+        }
+        else if(task1.id<task2.id){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+    }
+}
+
 class Task{
-    int processing;
-    int trigger;
     int id;
-    Task(int processing,int trigger, int id){
-        this.processing=processing;
-        this.trigger=trigger;
+    int enqueueTime;
+    int processTime;
+    Task(int id,int enqueueTime,int processTime){
         this.id=id;
+        this.enqueueTime=enqueueTime;
+        this.processTime=processTime;
     }
 }
