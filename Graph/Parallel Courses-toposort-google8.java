@@ -69,7 +69,7 @@ public class Main {
         }
         
         
-        for(int i=1;i<n;i++){
+        for(int i=1;i<=n;i++){
             if(indegree[i]==0){
                 q.add(i);
             }
