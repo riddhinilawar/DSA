@@ -45,23 +45,71 @@ The words in each input sentence are separated by single spaces.
 At most 5000 calls will be made to input.
 
 */
+// "static void main" must be defined in a public class..
+//https://svalaks.medium.com/leetcode-642-design-search-autocomplete-system-69dd16758b36
+/*
+
+Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a special character '#').
+
+You are given a string array sentences and an integer array times both of length n where sentences[i] is a previously typed sentence and times[i] is the corresponding number of times the sentence was typed. For each input character except '#', return the top 3 historical hot sentences that have the same prefix as the part of the sentence already typed.
+
+Here are the specific rules:
+
+The hot degree for a sentence is defined as the number of times a user typed the exactly same sentence before.
+The returned top 3 hot sentences should be sorted by hot degree (The first is the hottest one). If several sentences have the same hot degree, use ASCII-code order (smaller one appears first).
+If less than 3 hot sentences exist, return as many as you can.
+When the input is a special character, it means the sentence ends, and in this case, you need to return an empty list.
+Implement the AutocompleteSystem class:
+
+AutocompleteSystem(String[] sentences, int[] times) Initializes the object with the sentences and times arrays.
+List<String> input(char c) This indicates that the user typed the character c.
+Returns an empty array [] if c == '#' and stores the inputted sentence in the system.
+Returns the top 3 historical hot sentences that have the same prefix as the part of the sentence already typed. If there are fewer than 3 matches, return them all.
+Example 1:
+
+Input
+["AutocompleteSystem", "input", "input", "input", "input"]
+[[["i love you", "island", "iroman", "i love leetcode"], [5, 3, 2, 2]], ["i"], [" "], ["a"], ["#"]]
+Output
+[null, ["i love you", "island", "i love leetcode"], ["i love you", "i love leetcode"], [], []]
+Explanation
+AutocompleteSystem obj = new AutocompleteSystem(["i love you", "island", "iroman", "i love leetcode"], [5, 3, 2, 2]);
+obj.input("i"); // return ["i love you", "island", "i love leetcode"]. There are four sentences that have prefix "i". Among them, "ironman" and "i love leetcode" have same hot degree. Since ' ' has ASCII code 32 and 'r' has ASCII code 114, "i love leetcode" should be in front of "ironman". Also we only need to output top 3 hot sentences, so "ironman" will be ignored.
+obj.input(" "); // return ["i love you", "i love leetcode"]. There are only two sentences that have prefix "i ".
+obj.input("a"); // return []. There are no sentences that have prefix "i a".
+obj.input("#"); // return []. The user finished the input, the sentence "i a" should be saved as a historical sentence in system. And the following input will be counted as a new search.
+Constraints:
+
+n == sentences.length
+n == times.length
+1 <= n <= 100
+1 <= sentences[i].length <= 100
+1 <= times[i] <= 50
+c is a lowercase English letter, a hash '#', or space ' '.
+Each tested sentence will be a sequence of characters c that end with the character '#'.
+Each tested sentence will have a length in the range [1, 200].
+The words in each input sentence are separated by single spaces.
+At most 5000 calls will be made to input.
+
+*/
 public class Main {
 
     public static void main(String[] args) {
         
         Trie obj = new Trie();
-        // String inputStr[]={"i love you", "island", "iroman", "i love leetcode"};
-        // int times[]={5, 3, 2, 2};
+         String inputStr[]={"i love you", "island", "iroman", "i love leetcode"};
+         int times[]={5, 3, 2, 2};
         
-        String inputStr[]={"c", "co", "cod", "code"};
-        int times[]={2,2,4,4};
+        //String inputStr[]={"c", "co", "cod", "code"};
+        //int times[]={2,2,4,4};
         
         
         for(int i=0;i<inputStr.length;i++){
             String word=inputStr[i];
             obj.insert(word,times[i]);
         }
-        char[] charArr={ 'c', ' ', '#'};
+        //char[] charArr={ 'c', ' ', '#'};
+        char[] charArr={ 'i', ' ','a' ,'#'};
         for(char c:charArr)
             System.out.println(c+" "+obj.query(c));
         
@@ -91,7 +139,7 @@ class Trie{
     public void insert(String word,int time){
         if(allSentences.containsKey(word)==true){
                 mapToFrequency.put(allSentences.get(word),mapToFrequency.get(allSentences.get(word))+1);
-                insertNewWordOrUpdateOldWordFreq(word,allSentences,mapToSentense,mapToFrequency);
+                insertNewWordOrUpdateOldWordFreq(word);
             }
             else{
                 //System.out.println(word+" "+sentencesIdx);
@@ -99,11 +147,11 @@ class Trie{
                 mapToSentense.put(sentencesIdx,word);
                 mapToFrequency.put(sentencesIdx,time);
                 sentencesIdx++;
-                insertNewWordOrUpdateOldWordFreq(word,allSentences,mapToSentense,mapToFrequency);
+                insertNewWordOrUpdateOldWordFreq(word);
             }
     }
     
-    public void insertNewWordOrUpdateOldWordFreq(String word,HashMap<String,Integer> allSentences,HashMap<Integer,String> mapToSentense,HashMap<Integer,Integer> mapToFrequency){
+    public void insertNewWordOrUpdateOldWordFreq(String word){
         
         Node curr=root;
         for(int i=0;i<word.length();i++){
@@ -116,13 +164,13 @@ class Trie{
             //handle the frequencies
             int[] freq = curr.getMaxFeq();
             //System.out.println(word+"-- "+c+" -->"+freq[0]+" "+freq[1]+" "+freq[2]);
-            manageFrequencies(word,freq,allSentences,mapToSentense,mapToFrequency);
+            manageFrequencies(word,freq);
             //System.out.println(word+"-- "+c+" -->"+freq[0]+" "+freq[1]+" "+freq[2]);
         }
         curr.setEnd();
     }
     
-    public void manageFrequencies(String word,int[] freq,HashMap<String,Integer> allSentences,HashMap<Integer,String> mapToSentense,HashMap<Integer,Integer> mapToFrequency){
+    public void manageFrequencies(String word,int[] freq){
         
         int currIdx=allSentences.get(word);
         int currFreq=mapToFrequency.get(currIdx);
@@ -193,7 +241,7 @@ class Trie{
                     removeWord=mapToSentense.get(freq[i]);
                     removeIdx=i;
                 }
-                else if(mapToFrequency.get(freq[removeIdx]) == mapToFrequency.get(freq[i])     &&                        (removeWord.compareTo(mapToSentense.get(freq[i]))>0)){
+                else if(mapToFrequency.get(freq[removeIdx]) == mapToFrequency.get(freq[i])     &&      (removeWord.compareTo(mapToSentense.get(freq[i]))>0)){
                     removeWord=mapToSentense.get(freq[i]);
                     removeIdx=i;
                 }
