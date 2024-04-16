@@ -90,3 +90,16 @@ class meetingComparator implements Comparator<meeting>
         return 1; 
     }
 }
+
+==================================================================================
+
+long number = Long.parseLong(n);
+List<Long> candidates = new ArrayList<>();
+candidates.removeIf(candidate -> candidate == number);
+
+Collections.sort(candidates, (a, b) -> {
+    long diffA = Math.abs(a - number);
+    long diffB = Math.abs(b - number);
+    if (diffA != diffB) return Long.compare(diffA, diffB);
+    return Long.compare(a, b);
+});
