@@ -93,6 +93,7 @@ class Solution {
             for(int j=i+1;j<n;j++){
                 if(pair[j][1]==currVal){
                     //for handling next min condition when numbers are same.
+                    //because we are taking forward jump, we will get next minimum and next maximum forward only
                     getMinIdx=pair[j][0];
                     getMaxIdx=pair[j][0];
                     break;
