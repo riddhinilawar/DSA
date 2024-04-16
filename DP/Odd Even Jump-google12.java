@@ -52,7 +52,50 @@ Constraints:
 
 1 <= arr.length <= 2 * 104
 0 <= arr[i] < 105
+=======================================================TC:NlogN===============================
+ class Solution {
+    public int oddEvenJumps(int[] arr) {
+        int n = arr.length;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
 
+        //keeping the last node in the map, because we can visit at and making thier flags true.
+        map.put(arr[n - 1], n - 1);
+        boolean[] odd = new boolean[n];
+        boolean[] even = new boolean[n];
+        odd[n - 1] = true;
+        even[n - 1] = true;
+
+        //starting from last-1 node
+        for (int i = n - 2; i >= 0; i--) {
+
+            //from the current element checking wether next greater or equal value exist
+            Map.Entry<Integer, Integer> oddEntry = map.ceilingEntry(arr[i]);
+
+            //from current element checking wether the next smaller or equal value exists
+            Map.Entry<Integer, Integer> evenEntry = map.floorEntry(arr[i]);
+
+            //if exists then from that next max value can you make the even jump
+            if (oddEntry != null) {
+                odd[i] = even[oddEntry.getValue()];
+            }
+
+            //if exists then from that next min value can you make the odd jump
+            if (evenEntry !=  null) {
+                even[i] = odd[evenEntry.getValue()];
+            }
+            map.put(arr[i], i);
+        }
+
+        //checking just the odd array because the first jump you take will be always odd
+        int res = 0;
+        for (boolean o : odd) {
+            if(o) res++;
+        }
+        return res;
+
+    }
+}
+===============================================TC:N*N in worse case======================================
 class Solution {
     HashMap<Integer,Integer> minMap;
     HashMap<Integer,Integer> maxMap;
