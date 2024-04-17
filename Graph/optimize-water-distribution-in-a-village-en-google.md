@@ -84,35 +84,39 @@ From pictures, we can see that all nodes already connected with minimum costs.
 ## Code (`Java`)
 *Java code*
 ```java
-  class OptimizeWaterDistribution {
-    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
-      List<EdgeCost> costs = new ArrayList<>();
-      for (int i = 1; i <= n; i++) {
-        costs.add(new EdgeCost(0, i, wells[i - 1]));
-      }
-      for (int[] p : pipes) {
-        costs.add(new EdgeCost(p[0], p[1], p[2]));
-      }
-      Collections.sort(costs);
-      int minCosts = 0;
-      UnionFind uf = new UnionFind(n);
-      for (EdgeCost edge : costs) {
-        int rootX = uf.find(edge.node1);
-        int rootY = uf.find(edge.node2);
-        if (rootX == rootY) continue;
-        minCosts += edge.cost;
-        uf.union(edge.node1, edge.node2);
-        // for each union, we connnect one node
-        n--;
-        // if all nodes already connected, terminate early
-        if (n == 0) {
-          return minCosts;
+import java.util.*;
+public class Solution {
+
+    public static int supplyWater(int n, int k, int[] wells, int[][] pipes) {
+        // Write your code here
+        List<EdgeCost> costs = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            costs.add(new EdgeCost(0, i, wells[i - 1]));
         }
-      }
-      return minCosts;
+        for (int[] p : pipes) {
+            costs.add(new EdgeCost(p[0], p[1], p[2]));
+        }
+        Collections.sort(costs);
+        int minCosts = 0;
+        DisjointSet dsu = new DisjointSet(n);
+        for (EdgeCost edge : costs) {
+            int rootX = dsu.findUPar(edge.node1);
+            int rootY = dsu.findUPar(edge.node2);
+            if (rootX == rootY) continue;
+            minCosts += edge.cost;
+            dsu.unionBySize(edge.node1, edge.node2);
+            // for each union, we connnect one node
+            n--;
+            // if all nodes already connected, terminate early
+            if (n == 0) {
+            return minCosts;
+            }
+        }
+        return minCosts;
     }
-  
-    class EdgeCost implements Comparable<EdgeCost> {
+    
+}
+class EdgeCost implements Comparable<EdgeCost> {
       int node1;
       int node2;
       int cost;
@@ -127,32 +131,36 @@ From pictures, we can see that all nodes already connected with minimum costs.
         return this.cost - o.cost;
       }
     }
-    
-    class UnionFind {
-      int[] parent;
-      int[] rank;
-      public UnionFind(int n) {
-        parent = new int[n + 1];
+class DisjointSet {
+    List<Integer> parent = new ArrayList<>();
+    List<Integer> size = new ArrayList<>();
+    public DisjointSet(int n) {
         for (int i = 0; i <= n; i++) {
-          parent[i] = i;
+            parent.add(i);
+            size.add(1);
         }
-        rank = new int[n + 1];
-      }
-      public int find(int x) {
-        return x == parent[x] ? x : find(parent[x]);
-      }
-      public void union(int x, int y) {
-        int px = find(x);
-        int py = find(y);
-        if (px == py) return;
-        if (rank[px] >= rank[py]) {
-          parent[py] = px;
-          rank[px] += rank[py];
-        } else {
-          parent[px] = py;
-          rank[py] += rank[px];
-        }
-      }
     }
-  }
+
+    public int findUPar(int node) {
+        if (node == parent.get(node)) {
+            return node;
+        }
+        int ulp = findUPar(parent.get(node));
+        parent.set(node, ulp);
+        return parent.get(node);
+    }
+
+    public void unionBySize(int u, int v) {
+        int ulp_u = findUPar(u);
+        int ulp_v = findUPar(v);
+        if (ulp_u == ulp_v) return;
+        if (size.get(ulp_u) < size.get(ulp_v)) {
+            parent.set(ulp_u, ulp_v);
+            size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+        } else {
+            parent.set(ulp_v, ulp_u);
+            size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+        }
+    }
+}
 ```
