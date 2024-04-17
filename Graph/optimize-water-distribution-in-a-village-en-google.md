@@ -6,7 +6,7 @@ If any of the node is connected with 0 means well is digged.
 https://leetcode.com/problems/optimize-water-distribution-in-a-village/
 ## Problem Description
 
-## 题目描述
+
 ```
 There are n houses in a village. We want to supply water for all the houses by building wells and laying pipes.
 
