@@ -29,7 +29,81 @@ Constraints:
 
 cards.length == 4
 1 <= cards[i] <= 9
+=============================best solution=====================
+import java.util.Arrays;
+//TC:for initial sorting nlogn
+//TC:for next permutation 2 power n , here n is 4 so 16 = constant
+//TC::for validate functions, for each calls 4 times is made which is constant again
 
+//sc::just the stack space for sorting and validation
+
+public class Solution {
+    public boolean judgePoint24(int[] nums) {
+        Arrays.sort(nums);
+        do {
+            if (valid(nums)) return true;
+        } while(nextPermutation(nums));
+        return false;
+    }
+ 
+    //normal next permutation logic 
+    //1)find::current element is smaller next element that is the break pint, for 132, 1 is break point
+    //2)swap::swap break pint with next greater element than break point, swap(1,2)-->231
+    //3)reverse::reverse elements after break point(2)-->213
+    //if break point is not found me no permutation exist
+ 
+    private boolean nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) i--;
+        if (i < 0) return false;
+        int j = nums.length - 1;
+        while (nums[j] <= nums[i]) j--;
+        swap(nums, i, j);
+        reverse(nums, i + 1);
+        return true;
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private void reverse(int[] nums, int start) {
+        int i = start, j = nums.length - 1;
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    private boolean valid(int[] nums) {
+        double a = nums[0], b = nums[1], c = nums[2], d = nums[3];
+        if (valid(a + b, c, d) || valid(a - b, c, d) || valid(a * b, c, d) || valid(a / b, c, d)) return true;
+        if (valid(a, b + c, d) || valid(a, b - c, d) || valid(a, b * c, d) || valid(a, b / c, d)) return true;
+        if (valid(a, b, c + d) || valid(a, b, c - d) || valid(a, b, c * d) || valid(a, b, c / d)) return true;
+        return false;
+    }
+
+    private boolean valid(double a, double b, double c) {
+        if (valid(a + b, c) || valid(a - b, c) || valid(a * b, c) || (b != 0 && valid(a / b, c))) return true;
+        if (valid(a, b + c) || valid(a, b - c) || valid(a, b * c) || (c != 0 && valid(a, b / c))) return true;
+        return false;
+    }
+
+    private boolean valid(double a, double b) {
+        return Math.abs(a + b - 24.0) < 0.0001 || Math.abs(a - b - 24.0) < 0.0001 || Math.abs(a * b - 24.0) < 0.0001 || (b != 0 && Math.abs(a / b - 24.0) < 0.0001);
+    }
+}
+
+
+/**
+Sorting the array initially using Arrays.sort(nums) takes O(n log n), where n is the length of the array (4 in this case).
+The nextPermutation method generates permutations, which is a constant factor of 16 (2^4) in this case since there are 4 elements in the array. This operation is essentially O(1) for a fixed-size array.
+The valid method checks all possible combinations of arithmetic operations on the array elements. Since there are 4 elements, this leads to a constant number of operations, which can be considered O(1)
+ *//
+ ========================good solution=====================
 
 class Solution {
     public boolean judgePoint24(int[] inputCards) {
