@@ -1,6 +1,7 @@
 Count Pairs in an Array
 
-
+Note::multiply the element with the index at the start only, then mormal reverse pair problem.
+    
 Given an array arr of n integers, count all pairs (arr[i], arr[j]) in it such that i*arr[i] > j*arr[j] and 0 ≤ i < j < n.
 
 Note: 0-based Indexing is followed.
