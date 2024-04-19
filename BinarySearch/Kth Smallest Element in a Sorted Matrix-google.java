@@ -4,7 +4,7 @@ class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int R=matrix.length;
         int C=matrix[0].length;
-        int total = (R * C); //total element//
+        int total = (R * C); //total element//beacuse of duplicate elements present//
         int target = k-1; //position of element to be find//
         int left = Integer.MAX_VALUE, right = Integer.MIN_VALUE;//get max and min range of answer//
         for(int i=0;i<R;i++){
