@@ -1,36 +1,43 @@
 class Solution {
     int median(int[][] matrix, int R, int C) {
         int total = (R * C);
-        int tar = total / 2;
-        int l = 1, u = 2000, mid = (l + u) / 2;
+        int target = total / 2; //position of median element//
+        int left = 1, right = 2000;
+        
         int ans = -1;
-        while (l <= u) {
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            
             int count = 0;
             for (int[] row : matrix) {
-                count += getCountOfLTEElements(row, mid);
+                count += getCountOfLTEElements(row, mid);//to get the elemets less than or equal to mid//
             }
-            if (count > tar) {
-                u = mid - 1;
+            
+            if (count > target) {
                 ans = mid;
+                right = mid - 1;
             } else {
-                l = mid + 1;
+                left = mid + 1;
             }
-            mid = (l + u) / 2;
         }
         return ans;
     }
 
     int getCountOfLTEElements(int[] arr, int ele) {
-        int l = 0, u = arr.length - 1, mid = (l + u) / 2;
-        while (l <= u) {
+        int left = 0, right = arr.length - 1;
+        
+        while (left <= right) {
+            
+            int mid = (left + right) / 2;
+            
             if (arr[mid] <= ele) {
-                l = mid + 1;
+                left = mid + 1;
             } else {
-                u = mid - 1;
+                right = mid - 1;
             }
-            mid = (l + u) / 2;
+            
         }
-        return l;
+        return left;
     }
 }
 
