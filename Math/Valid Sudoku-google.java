@@ -52,13 +52,14 @@ class Solution {
     }
     public boolean solve(char[][] board){
         for(int i=0;i<board.length;i++){
-        for(int j=0;j<board[0].length;j++){
+            for(int j=0;j<board[0].length;j++){
 
-            if(board[i][j]!='.'){
-                if(isValid(board[i][j],i,j,board)==false)
-                    return false;
+                if(board[i][j]!='.'){
+                    if(isValid(board[i][j],i,j,board)==false)
+                        return false;
+                }
             }
-        }}
+        }
         return true;
     }
     public boolean isValid(char c,int row,int column,char[][] board){
