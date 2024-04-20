@@ -99,7 +99,7 @@ class SnapshotArray {
  * int param_3 = obj.get(index,snap_id);
  */
 ==========================BEST SOLUTION====================================
-
+//for every index we will use tree map, and it that we can keep snapid with values.
 class SnapshotArray {
     TreeMap<Integer, Integer>[] snapShot;
     int snapShotId = 0;
