@@ -49,31 +49,32 @@ The array formed after these steps will be a sorted array.
 Approach 3: Dutch National flag algorithm 
 class Solution {
     public void sortColors(int[] nums) {
-        int lo = 0; 
-        int hi = nums.length - 1; 
-        int mid = 0; 
-        int temp; 
-        while (mid <= hi) { 
-            switch (nums[mid]) { 
-                case 0: { 
-                    temp = nums[lo]; 
-                    nums[lo] = nums[mid]; 
-                    nums[mid] = temp; 
-                    lo++; 
-                    mid++; 
-                    break; 
-                } 
-                case 1: 
-                    mid++; 
-                    break; 
-                case 2: { 
-                    temp = nums[mid]; 
-                    nums[mid] = nums[hi]; 
-                    nums[hi] = temp; 
-                    hi--; 
-                    break; 
-                } 
-            } 
+        int start=0;
+        int mid=0;
+        int end=nums.length-1;
+        
+        while(mid<=end){
+            if(nums[mid]==0){
+                int temp=nums[mid];
+                nums[mid]=nums[start];
+                nums[start]=temp;
+                mid++;
+                start++;
+                //after swapping incrementing both pointers because//
+                //start will be before or at point of mid//
+                //if mid == 0 start will be 1 or 0//
+                //so that it can be incementedted and won't go in never ending loop//
+                //[2,0,2,1,1,0] -> [Output] [1,1,2,2,0,0] If you increment mid//
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                int temp=nums[mid];
+                nums[mid]=nums[end];
+                nums[end]=temp;
+                end--;
+            }
         }
     }
 }
