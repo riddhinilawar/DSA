@@ -6,6 +6,19 @@ numMap.lowerKey(7);
 
 TreeMap higherKey()
 treemap.higherKey(3);
+========================================
+Map.Entry<Integer,Integer> ceilEntry = map.ceilingEntry();
+Map.Entry<Integer,Integer> floorEntry = map.floorEntry();
+
+if(ceilEntry!=null){
+ ceilEntry.getValue();
+ floorEntry.getKey();
+}
+ 
+================array of treemap======
+ TreeMap<Integer, Integer>[] snapShot =snapShot = new TreeMap[length];
+
+=================================
 
 
 
