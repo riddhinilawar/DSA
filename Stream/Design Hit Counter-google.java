@@ -1,11 +1,15 @@
 class HitCounter {
   public void hit(int timestamp) {
+    
+    //300 because of 5 minutes//
     final int i = timestamp % 300;
+    
     if (timestamps[i] == timestamp) {
       ++hits[i];
-    } else {
+    }
+    else {
       timestamps[i] = timestamp;
-      hits[i] = 1; // Reset the hit count to 1.
+      hits[i] = 1; // Reset the hit count to 1.//
     }
   }
 
