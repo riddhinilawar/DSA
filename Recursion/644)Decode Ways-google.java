@@ -41,14 +41,14 @@ Constraints:
 1 <= s.length <= 100
 s contains only digits and may contain leading zero(s).
 
-
+==============================Best Solution========================
 class Solution {
     HashMap<Integer,Integer> map = new HashMap<>();
     public int numDecodings(String s) {
-        return helper(s,0,s.length(),0);
+        return helper(s,0,s.length());
     }
-    public int helper(String s,int idx,int len,int level){
-        if(idx==s.length()){
+    public int helper(String s,int idx,int len){
+        if(idx==len){
             return 1;
         }
 
@@ -58,22 +58,23 @@ class Solution {
 
         int count=0;
 
-        if(idx<=len-1&&s.charAt(idx)!='0')count+=helper(s,idx+1,len,level+1);
+        if(idx<=len-1&&s.charAt(idx)!='0')count+=helper(s,idx+1,len);
 
         if(idx<=len-2&&s.charAt(idx)!='0'&&s.charAt(idx)<='2'){
+            
             if(s.charAt(idx)=='2' && s.charAt(idx+1)<='6'){
-                count+=helper(s,idx+2,len,level+1);
+                count+=helper(s,idx+2,len);
             }
             else if(s.charAt(idx)<='1'){
-                count+=helper(s,idx+2,len,level+1);
+                count+=helper(s,idx+2,len);
             }
         }
+
         map.put(idx,count);
         return count;
 
     }
 }
-
 ============================================================================
 
 class Solution {
