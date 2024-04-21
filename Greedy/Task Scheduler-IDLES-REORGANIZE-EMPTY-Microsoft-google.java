@@ -76,3 +76,6 @@ public class Solution {
         return tasks.length + idles; // Return total intervals needed including idles
     }
 }
+["A","A","A","B","B","B"],n=2  partCount::2 partLength::1 emptySlots::2 availableTasks::0 idles::2
+["A","C","A","B","D","B"],n=1  partCount::1 partLength::0 emptySlots::0 availableTasks::2 idles::0
+["A","A","A","A","A","B"],n=2  partCount::4 partLength::2 emptySlots::8 availableTasks::1 idles::7
