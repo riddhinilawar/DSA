@@ -47,34 +47,32 @@ tasks[i] is an uppercase English letter.
 
 public class Solution {
     public int leastInterval(char[] tasks, int n) {
-        int[] counter = new int[26];
-        int max = 0;
-        int maxCount = 0;
-        for(char task : tasks) {
-            counter[task - 'A']++;
-            if(max == counter[task - 'A']) {
-                maxCount++;
-            }
-            else if(max < counter[task - 'A']) {
-                max = counter[task - 'A'];
-                maxCount = 1;
+        int[] counter = new int[26]; // Initialize an array to count occurrences of each task
+        
+        int max = 0; // Variable to store the maximum occurrence of a task
+        int maxCount = 0; // Variable to store the count of tasks with maximum occurrence
+        
+        // Iterate through the tasks to count occurrences and find the maximum occurrence
+        for (char task : tasks) {
+            counter[task - 'A']++; // Increment the count for the current task
+            if (max == counter[task - 'A']) {
+                maxCount++; // If current task count matches max, increment maxCount
+            } else if (max < counter[task - 'A']) {
+                max = counter[task - 'A']; // Update max if a higher count is found
+                maxCount = 1; // Reset maxCount to 1 for the new maximum count
             }
         }
 
-        //System.out.println(max+" "+maxCount);
-        //max:max occurance of single char
-        //maxCount:total count of characters which have max occurance
-
-        int partCount = max - 1;
-
-        //System.out.println(n+" "+maxCount);
-        int partLength = n - (maxCount - 1);
-
-        //System.out.println(partCount+" "+partLength);
-        int emptySlots = partCount * partLength;
-        int availableTasks = tasks.length - max * maxCount;
-        int idles = Math.max(0, emptySlots - availableTasks);
+        int partCount = max - 1; // Calculate the number of partitions between repetitions
         
-        return tasks.length + idles;
+        int partLength = n - (maxCount - 1); // Calculate the length of each partition respecting cooling time
+        
+        int emptySlots = partCount * partLength; // Calculate total empty slots in the partitions
+        
+        int availableTasks = tasks.length - max * maxCount; // Calculate tasks that can fill empty slots
+        
+        int idles = Math.max(0, emptySlots - availableTasks); // Calculate the number of idles needed
+        
+        return tasks.length + idles; // Return total intervals needed including idles
     }
 }
