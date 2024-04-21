@@ -1,3 +1,4 @@
+Note::Brute force should be using hashmap
 class HitCounter {
   public void hit(int timestamp) {
     
