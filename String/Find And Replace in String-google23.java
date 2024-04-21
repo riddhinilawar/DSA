@@ -57,10 +57,12 @@ class Solution {
             String tar=targets[i];
             int idx=indices[i];
 
+            //if source string is out of bound//
             if(idx+src.length()-1>=s.length()){
                 continue;
             }
 
+            //check wether source string is present in s//
             if(s.substring(idx,idx+src.length()).equals(src)==false){
                 continue;
             }
