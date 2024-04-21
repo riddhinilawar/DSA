@@ -57,7 +57,7 @@ class Pair{
 }
 
 
-// haven't checked yet, seems unnecessarily complicated
+========================================Best Time Complexity Solution=============================
 
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
@@ -72,7 +72,7 @@ class Solution {
 
             int currentTemp = temperatures[currDay];
 
-            // hottest temp seen so far moving from the right
+            // hottest temp seen so far moving from the right//
             if (currentTemp >= hottest) {
                 hottest = currentTemp;
                 continue;
@@ -81,10 +81,12 @@ class Solution {
             int days = 1;
 
             while (temperatures[currDay + days] <= currentTemp) {
-                // Use information from answer to search for the next warmer day
+                // Use information from answer to search for the next warmer day//
+                // Here you are jumping with days, you are check who is smaller than u, that smaller one need d days to get his next greater temperature// 
                 days += answer[currDay + days];
             }
 
+            //If no one is smaller it means d is answer//
             answer[currDay] = days;
         }
         
