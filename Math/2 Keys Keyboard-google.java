@@ -31,18 +31,17 @@ class Solution {
         if(n==1)return 0;
         int operations=0;
 
-        while(true){
-            
-            for(int i=2;i<=(n/2);i++){
-                if(n%i==0){
-                    n=n/i;
-                    operations+=(i);
-                    //System.out.println(n+" "+operations+" "+i);
-                    i=2;
-                }
+       
+        for(int i=2;i<=(n/2);i++){
+            if(n%i==0){
+                n=n/i;
+                operations+=(i);
+                i=2;
             }
-            return operations+n;
         }
+        //adding n at lasr in case of prime number//
+        return operations+n;
+        
 
     }
 }
