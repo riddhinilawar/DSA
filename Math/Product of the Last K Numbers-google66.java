@@ -73,6 +73,7 @@ class ProductOfNumbers {
     public int getProduct(int k) {
         //System.out.println(list+" "+maxIdxOf0);
         if(maxIdxOf0<list.size()-k){
+            //list dosen't contains k elements yet//k-1th element is 0//
             if(list.size()-k-1<0 || list.get(list.size()-k-1)==0 )
                 return list.get(list.size()-1);
             else
