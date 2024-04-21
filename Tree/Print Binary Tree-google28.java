@@ -35,14 +35,18 @@ The number of nodes in the tree is in the range [1, 210].
 -99 <= Node.val <= 99
 The depth of the tree will be in the range [1, 10].
 
+
 class Solution {
     public List<List<String>> printTree(TreeNode root) {
-        int height=getHeight(root)-1;
-        int m=height+1;
-        int n=(int)Math.pow(2,height+1) - 1;
+        
+        int height=getHeight(root)-1;//height of tree//
+        int m=height+1;//rows//
+        int n=(int)Math.pow(2,height+1) - 1;//cols//
+
         int[][] res= new int[m][n];
         for(int d[]:res)Arrays.fill(d,Integer.MIN_VALUE);
         helper(root,res,0,(n-1)/2,height);
+        
         return constructAns(res);
     }
     public void helper(TreeNode curr,int res[][],int row,int col,int height){
