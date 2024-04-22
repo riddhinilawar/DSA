@@ -18,7 +18,7 @@ Constraints:
 -231 <= n <= 231-1
 n is an integer.
 -104 <= xn <= 104
-Leetcode:
+Leetcode:------------>Binary Exponentiation
 class Solution {
     public double myPow(double x, int n) {
         double ans = 1.0;
