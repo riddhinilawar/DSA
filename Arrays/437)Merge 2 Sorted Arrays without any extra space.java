@@ -96,6 +96,11 @@ public static void merge(long arr1[], long arr2[], int n, int m)
 			System.out.print(arr2[k]+" ");		
 		}
 	}
+
+=================SHELL SORT TECHNIQUE=====GAP METHOD================================================================
+Note::here we use ceil because, floor will skip some elements
+Ex::[0,1,2][0,1,2,3], with floor gaps here are 3,1:: with ceil gaps here are 4,2,1.
+	
 Approach 3(same as of leetcode, but not exact, change in sizes):
 
 static void swap(int a,int b)
