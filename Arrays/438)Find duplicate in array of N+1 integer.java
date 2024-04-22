@@ -1,4 +1,4 @@
-Find duplicate in array of N+1 integer
+Find duplicate in array of N+1 integer, LC-287
 Problem Statement: Given an array of N + 1 size, where each element is between 1 and N. Assuming there is only one duplicate number, your task is to find the duplicate number.
 Examples:
 Example 1: 
@@ -64,3 +64,21 @@ Approach 3:LinkedList cycle detection algo
         }
         return slow;
     }
+=======================================Slow & fast pointer can be set to zero================
+ class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        fast = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+}
