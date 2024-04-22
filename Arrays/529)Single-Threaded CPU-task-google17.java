@@ -1,5 +1,5 @@
 1834. Single-Threaded CPU
-
+//Refer Meeting room 3 for Multi-Threaded CPU
 Note::
  Step1)create the task class.
  Step2)create task array of int[] size 3 to store id with tasks details.
