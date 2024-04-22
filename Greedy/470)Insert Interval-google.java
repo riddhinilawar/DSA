@@ -30,10 +30,14 @@ class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
         ArrayList<int[]> res=new ArrayList<>();
         
+        //If no intervel is present//
         if(intervals.length==0){
             res.add(newInterval);
             return res.toArray(new int[0][]); 
         }
+
+
+        //If the range is before all intervals//
         if(newInterval[1]<intervals[0][0]){
             res.add(newInterval);
             for(int[] interval: intervals)
@@ -45,6 +49,8 @@ class Solution {
         int end=intervals[0][1];
         boolean interval_insertes=false;
 
+
+        //traverse and try to merge intervals//
         for(int i=0;i<intervals.length;i++){
             if(interval_insertes==false && newInterval[0] <= intervals[i][0]){
                 if(newInterval[0] <= end){
@@ -69,15 +75,20 @@ class Solution {
             }
         }
         res.add(new int[]{start,end});
+
+
+        //If the interval is present at the last//
         if(interval_insertes==false){
             int temp[]=res.get(res.size()-1);
             if(temp[1]>=newInterval[0]){
                 res.remove(res.size()-1);
                 res.add(new int[]{Math.min(temp[0],newInterval[0]),Math.max(temp[1],newInterval[1])});
             }
-            else
+            else{
                 res.add(newInterval);
+            }
         }
+        
         return res.toArray(new int[0][]);
     }
 }
