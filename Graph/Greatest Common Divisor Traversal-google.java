@@ -71,18 +71,25 @@ public static void allprime(int n,HashMap<Integer,ArrayList<Integer>>map,int st)
         
         int n=nums.length;
         for(int i=0;i<n;i++){
+            //creating the adjList between index//
             adj.add(new ArrayList<>());
         }    
+     
         for(int i=0;i<n;i++){
+            // Map<Prime Factor Number,All the Indexes link with respect to prime factors>//
+            // passing i as index//
             allprime(nums[i],map,i);
         }
         
         for(ArrayList<Integer>temp:map.values()){
+            //for particular prime number, connect all the indexes//
             for(int i=1;i<temp.size();i++){
                 adj.get(temp.get(i-1)).add(temp.get(i));
                 adj.get(temp.get(i)).add(temp.get(i-1));
             }
         }
+
+        //do dfs to check weather all the indexes are connected//
         int []vis=new int[n];
         dfs(adj,vis,0);
         for(int i=0;i<n;i++){
