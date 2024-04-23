@@ -1,3 +1,41 @@
+BEST SOLUTION
+
+class Solution {
+    public Node flatten(Node head) {
+        Node curr=head;
+        while(curr!=null){
+
+            if(curr.child!=null){
+
+                Node childStart = curr.child;
+                Node childEnd = getChildListEnd(childStart);
+                
+                curr.child=null;
+                Node nextNode = curr.next;
+
+                curr.next=childStart;
+                childStart.prev=curr;
+
+                childEnd.next=nextNode;
+                if(nextNode!=null)nextNode.prev=childEnd;
+
+            }
+
+            curr=curr.next;
+        }
+        return head;
+    }
+    public Node getChildListEnd(Node curr){
+        Node prev=curr;
+        while(curr!=null){
+            prev=curr;
+            curr=curr.next;
+        }
+        return prev;
+    }
+}
+==============================================================================================
+
 class Solution {
     public Node flatten(Node head) {
         if(head == null)
