@@ -9,6 +9,12 @@ mkdir: Given a directory path that does not exist, you should make a new directo
 addContentToFile: Given a file path and file content in string format. If the file doesn’t exist, you need to create that file containing given content. If the file already exists, you need to append given content to original content. This function has void return type.
 
 readContentFromFile: Given a file path, return its content in string format.
+
+Note:
+
+You can assume all file or directory paths are absolute paths which begin with / and do not end with / except that the path is just "/".
+You can assume that all operations will be passed valid parameters and users will not attempt to retrieve file content or list a directory or file that does not exist.
+You can assume that all directory names and file names only contain lower-case letters, and same names won’t exist in the same directory.
 */
 public class Main {
     public static void main(String[] args) {
