@@ -100,7 +100,7 @@ class LFUCache {
             return;
         }
         if (capacity == cache.size()) {
-            final Set<Integer> keys = frequencies.get(minf);
+            final Set<Integer> keys = frequencies.get(minf);//LinkedHashset::first inserted -> removed first//
             final int keyToDelete = keys.iterator().next();
             cache.remove(keyToDelete);
             keys.remove(keyToDelete);
