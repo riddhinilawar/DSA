@@ -38,57 +38,36 @@ Constraints:
 
 class Solution {
     public List<Integer> grayCode(int n) {
-        List<Integer> list = new ArrayList<>();
-        list.add(0);
-        int prev=0;
-        int len=(int)Math.pow(2,n);
 
+        List<Integer> ans = new ArrayList<Integer>();//need to maintain the order//
+        Set<Integer> st = new HashSet<Integer>();
+        
+        ans.add(0);
+        st.add(0);
+        
+        int numsReq = (1<<n);//number required in list//
+        int lastNum = 0;
+        //check from right to left, if set bit is 1 make it 0, or 0 make it 1.
+        while( ans.size() < numsReq ){
+            int newNum = 0;
+            for(int bitIdx=0; bitIdx<n; bitIdx++){
+                //get the bit//
+                int lastNumBit = (lastNum>>bitIdx)&1;
 
-        for(int i=1;i<len/2;i++){
-            int bitCount=getBitCount(i);
+                //shuffling the bit//
+                if( lastNumBit == 1 ) newNum = lastNum - (1<<bitIdx);
+                else newNum = lastNum + (1<<bitIdx);
 
-            if(Math.abs(bitCount-prev)!=1){
-                System.out.println((i+1)+" "+getBitCount(i+1));
-                System.out.println((i)+" "+getBitCount(i));
-                list.add(i+1);
-                list.add(i);
-                i++;
+                //If dosent came earlier consider it//
+                if( st.contains(newNum) == false ){
+                    break;
+                }
             }
-            else{
-                list.add(i);
-                System.out.println((i)+" "+getBitCount(i));
-            }
-             prev=bitCount;
+            st.add(newNum);
+            ans.add(newNum);
+            lastNum = newNum;
         }
-
-        for(int i=len-1;i>=len/2;i--){
-            int bitCount=getBitCount(i);
-
-         
-
-            if(Math.abs(bitCount-prev)!=1){
-                list.add(i-1);
-                System.out.println((i-1)+" "+getBitCount(i-1));
-                System.out.println((i)+" "+getBitCount(i));
-                list.add(i);
-                i--;
-            }
-            else{
-                list.add(i);
-                System.out.println((i)+" "+getBitCount(i));
-            }
-             prev=bitCount;
-        }
-
-
-        return list;
-    }
-    public int getBitCount(int n){
-        int count=0;
-        while(n>0){
-            if((n&1)!=0)count++;
-            n=n>>1;
-        }
-        return count;
+        
+        return ans;
     }
 }
