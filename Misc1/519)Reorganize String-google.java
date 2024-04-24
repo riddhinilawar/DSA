@@ -24,6 +24,8 @@ s consists of lowercase English letters.
 class Solution {
     public String reorganizeString(String s) {
         int n=s.length();
+
+        //get frequencies//
         int freq[]=new int[26];
         int maxFreq=0;
         char maxChar='-';
@@ -35,10 +37,15 @@ class Solution {
             }
         }
 
+        //if reorganization is not possible//
         if(n%2==0 && maxFreq>(n/2))return "";
         if(n%2==1 && maxFreq>(n+1)/2)return "";
 
+
         char ans[]=new char[s.length()];
+        
+        //first place the max character alternately//
+        //later place all the character inbetween it//
         
         int idx=0;
         while(idx<n && freq[maxChar-'a']>0){
