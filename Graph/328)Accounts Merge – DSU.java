@@ -86,62 +86,12 @@ Note: If you wish to see the dry run of the above approach, you can watch the vi
 
 Code:
 
+/**
+Step 1)Using DSU connect the indexes by using the hashmap 
+Step 2)Then get the ultimate parent and keep in it
+step 3)Trim the results.
+ */
 
-import java.io.*;
-import java.util.*;
-
-
-
-//User function Template for Java
-class DisjointSet {
-    List<Integer> rank = new ArrayList<>();
-    List<Integer> parent = new ArrayList<>();
-    List<Integer> size = new ArrayList<>();
-    public DisjointSet(int n) {
-        for (int i = 0; i <= n; i++) {
-            rank.add(0);
-            parent.add(i);
-            size.add(1);
-        }
-    }
-
-    public int findUPar(int node) {
-        if (node == parent.get(node)) {
-            return node;
-        }
-        int ulp = findUPar(parent.get(node));
-        parent.set(node, ulp);
-        return parent.get(node);
-    }
-
-    public void unionByRank(int u, int v) {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return;
-        if (rank.get(ulp_u) < rank.get(ulp_v)) {
-            parent.set(ulp_u, ulp_v);
-        } else if (rank.get(ulp_v) < rank.get(ulp_u)) {
-            parent.set(ulp_v, ulp_u);
-        } else {
-            parent.set(ulp_v, ulp_u);
-            int rankU = rank.get(ulp_u);
-            rank.set(ulp_u, rankU + 1);
-        }
-    }
-
-    public void unionBySize(int u, int v) {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return;
-        if (size.get(ulp_u) < size.get(ulp_v)) {
-            parent.set(ulp_u, ulp_v);
-            size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
-        } else {
-            parent.set(ulp_v, ulp_u);
-            size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
-        }
-    }
-}
 class Solution {
     static List<List<String>> accountsMerge(List<List<String>> details) {
         int n = details.size();
@@ -184,33 +134,33 @@ class Solution {
     }
 }
 
-class Main {
-    public static void main (String[] args) {
-        List<List<String>> accounts = new ArrayList() {
-            {
-                add(new ArrayList<String>(Arrays.asList("John", "j1@com", "j2@com", "j3@com")));
-                add(new ArrayList<String>(Arrays.asList("John", "j4@com")));
-                add(new ArrayList<String>(Arrays.asList("Raj", "r1@com", "r2@com")));
-                add(new ArrayList<String>(Arrays.asList("John", "j1@com", "j5@com")));
-                add(new ArrayList<String>(Arrays.asList("Raj", "r2@com", "r3@com")));
-                add(new ArrayList<String>(Arrays.asList("Mary", "m1@com")));
-
-            }
-        };
-
-        Solution obj = new Solution();
-        List<List<String>> ans = obj.accountsMerge(accounts);
-
-        int n = ans.size();
-        for (int i = 0; i < n; i++) {
-            System.out.print(ans.get(i).get(0) + ": ");
-            int size = ans.get(i).size();
-            for (int j = 1; j < size; j++) {
-                System.out.print(ans.get(i).get(j) + " ");
-            }
-
-            System.out.println("");
+class DisjointSet {
+    List<Integer> parent = new ArrayList<>();
+    List<Integer> size = new ArrayList<>();
+    public DisjointSet(int n) {
+        for (int i = 0; i <= n; i++) {
+            parent.add(i);
+            size.add(1);
         }
-
+    }
+    public int findUPar(int node) {
+        if (node == parent.get(node)) {
+            return node;
+        }
+        int ulp = findUPar(parent.get(node));
+        parent.set(node, ulp);
+        return parent.get(node);
+    }
+    public void unionBySize(int u, int v) {
+        int ulp_u = findUPar(u);
+        int ulp_v = findUPar(v);
+        if (ulp_u == ulp_v) return;
+        if (size.get(ulp_u) < size.get(ulp_v)) {
+            parent.set(ulp_u, ulp_v);
+            size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+        } else {
+            parent.set(ulp_v, ulp_u);
+            size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+        }
     }
 }
