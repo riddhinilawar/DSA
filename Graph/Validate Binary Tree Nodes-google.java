@@ -45,7 +45,9 @@ class Solution {
                 if(dsu.findUPar(leftNode) == dsu.findUPar(parent))
                     return false;
                 
-                //need to check for indegree because 2 nodes can't be the parent//
+                //need to check for indegree, because 2 nodes can't be the parent on single node//
+                //n=3,[-1,-1,1],[1,-1,-1] ->false (0->1<-2) indegree of 1 becomes 2 in such cases return false//
+
                 if(inDegree[leftNode]==1)
                     return false;
                 inDegree[leftNode]++;
@@ -56,7 +58,7 @@ class Solution {
                 if(dsu.findUPar(rightNode) == dsu.findUPar(parent))
                     return false;
                 
-                //need to check for indegree because 2 nodes can't be the parent//
+                //need to check for indegree, because 2 nodes can't be the parent on single node//
                 if(inDegree[rightNode]==1)
                     return false;
                 
