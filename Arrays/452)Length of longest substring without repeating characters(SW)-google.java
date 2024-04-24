@@ -62,30 +62,27 @@ public class LengthofLongestSubstringwithoutanyRepeatingCharacter2 {
 	    }
 }
 Approach 3: using hashmap
-public static int lengthOfLongestSubstring(String S) {
-	        if(S.length()==0)return 0;
-	        
-	        int r=0,l=0;
-	        int max_len=1;
-	        
-	        HashMap<Character,Integer> map=new HashMap<Character,Integer>();
-	        
-	        while(r<S.length()&&l<S.length())
-	        {
-	            if(map.containsKey(S.charAt(r))&&map.get(S.charAt(r))>=l)
-	            {
-	                l=map.get(S.charAt(r))+1;
-	                map.put(S.charAt(r),r);
-	            }
-	            else
-	            {		
-	                map.put(S.charAt(r),r);
-	            }
-	            
-	            max_len=Math.max(max_len,r-l+1);
-	           // System.out.println(max_len+" "+r);
-	            r++;
-	        }
-	        return max_len;
-	    }
+class Solution {
+    public static int lengthOfLongestSubstring(String S) {
+        if(S.length()==0)
+            return 0;
+        
+        int r=0,l=0;
+        int maxLen=1;
+        
+        HashMap<Character,Integer> map=new HashMap<Character,Integer>();
+        
+        while(r<S.length()){
+
+            if(map.containsKey(S.charAt(r))&&map.get(S.charAt(r))>=l){
+                l=map.get(S.charAt(r))+1;
+            }
+            
+            map.put(S.charAt(r),r);
+            maxLen=Math.max(maxLen,r-l+1);
+            r++;
+        }
+        return maxLen;
+    }
+}
 Exception : Input : geeksforgeeks (at second occurrence of ‘g’---l<map.getvalue(r))
