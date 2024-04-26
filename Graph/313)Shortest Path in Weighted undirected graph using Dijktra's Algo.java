@@ -1,5 +1,8 @@
 Shortest Path in Weighted undirected graph
 
+Similar::https://github.com/riddhinilawar/DSA/blob/main/Graph/Find%20Edges%20in%20Shortest%20Paths-Dijakstra's%20Path.java
+    3123. Find Edges in Shortest Paths
+    
 You are given a weighted undirected graph having n+1 vertices numbered from 0 to n and m edges describing there are edges between a to b with some weight, find the shortest path between the vertex 1 and the vertex n and if path does not exist then return a list consisting of only -1.
 Example:
 Input:
