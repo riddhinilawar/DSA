@@ -11,7 +11,7 @@ class Tree
         if(root.left!=null)child+=root.left.data;
         if(root.right!=null)child+root.right.data;
         
-        if(child>=root)root.data=child;
+        if(child>=root)root.data=child;//not sure, but of no use. dosen't affect th code if you write it or won't.
         else{
             if(root.left!=null)root.left.data=root.data;
             if(root.right!=null)root.right.data=root.data;
