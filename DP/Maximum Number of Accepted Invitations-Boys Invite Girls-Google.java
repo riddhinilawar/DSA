@@ -127,3 +127,18 @@ public class Solution {
         return max;
     }
 }
+==============================================TC===========================================================
+
+The time complexity of both solutions can be analyzed as follows:
+
+Original Solution (Using Bipartite Matching Algorithm):
+bipartiteMatch Method: The time complexity of this method depends on the number of workers (n) and the number of jobs (m). In the worst case, it can be O(m * n) when there is no immediate match and the algorithm explores all possible assignments.
+maximumInvitations Method: This method iterates over all jobs (m) and calls bipartiteMatch for each job, resulting in a worst-case time complexity of O(m^2 * n), where m is the number of jobs and n is the number of workers.
+Modified Solution (Using Recursive Backtracking):
+The maximumInvitations method uses a recursive approach to explore all possible assignments. It iterates over each job and each worker, resulting in a time complexity that depends on the number of jobs (m) and the number of workers (n).
+In the worst case, where all possible assignments need to be explored, the time complexity of this solution is exponential, specifically O(2^n * m), where m is the number of jobs and n is the number of workers.
+Comparing the time complexities:
+
+The original solution using the bipartite matching algorithm has a polynomial time complexity O(m^2 * n), which is generally more efficient than the modified solution's exponential time complexity O(2^n * m).
+However, the efficiency of the original solution depends on the specific characteristics of the input graph (number of jobs, number of workers, and their relationships).
+In summary, the original solution using the bipartite matching algorithm is more efficient in terms of time complexity compared to the modified solution using recursive backtracking, especially for larger graphs with a significant number of jobs and workers.
