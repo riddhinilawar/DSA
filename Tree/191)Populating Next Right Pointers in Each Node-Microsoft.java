@@ -56,7 +56,7 @@ class Solution {
         return root;
     }
 }
-================================================MOST OPTIMAL(WON'T RUN IT TREE ISN'T COMPLETELY FILLED)====================================
+================================================MOST OPTIMAL(WON'T RUN IF TREE ISN'T COMPLETELY FILLED)====================================
   class Solution {
     public Node connect(Node root) {
 
