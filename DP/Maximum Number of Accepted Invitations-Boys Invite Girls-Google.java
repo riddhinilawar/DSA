@@ -40,39 +40,51 @@ grid[i].length == n
 
 grid[i][j] is either 0 or 1.
 Solution
-class Solution {
-    public:
-      bool bipartiteMatch(const vector<vector<int>>& grid, int u, vector<bool> visited,            
-      vector<int>& girls) {
-       int m = grid.size();
-       int n = grid[0].size();
-       for (int v = 0; v < n; v++) {
-        if (grid[u][v] && !visited[v]) {
-            visited[v] = true;
-            if (girls[v] < 0 || bipartiteMatch(grid, girls[v], visited, girls)) {
-                girls[v] = u;
-                return true;
+import java.util.Arrays;
+
+public class Solution {
+    public boolean bipartiteMatch(int[][] grid, int u, boolean[] visited, int[] girls) {
+        int m = grid.length;
+        int n = grid[0].length;
+        for (int v = 0; v < n; v++) {
+            if (grid[u][v] == 1 && !visited[v]) {
+                visited[v] = true;
+                if (girls[v] < 0 || bipartiteMatch(grid, girls[v], visited, girls)) {
+                    girls[v] = u;
+                    return true;
+                }
             }
         }
-   }
-   return false;
-  }
-
-int maximumInvitations(vector<vector<int>>& grid) {
-    int m = grid.size();
-    int n = grid[0].size();
-    vector<int> grils(n, -1);
-    int matches = 0;
-
-    for (int u = 0; u < m; u++) {
-        vector<bool> visited(n, false);
-        if (bipartiteMatch(grid, u, visited, grils)) {
-            matches++;
-        }
+        return false;
     }
-    return matches;
- }
-};
+
+    public int maximumInvitations(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] girls = new int[n];
+        Arrays.fill(girls, -1);
+        int matches = 0;
+
+        for (int u = 0; u < m; u++) {
+            boolean[] visited = new boolean[n];
+            if (bipartiteMatch(grid, u, visited, girls)) {
+                matches++;
+            }
+        }
+        return matches;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[][] grid = {
+            {1, 0, 1},
+            {0, 1, 0},
+            {1, 1, 0}
+        };
+        System.out.println(solution.maximumInvitations(grid)); // Output: 2
+    }
+}
+
 =================================================My Solution=========================
 import java.util.*;
 public class Solution {
