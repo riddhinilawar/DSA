@@ -1,4 +1,4 @@
-Min distance between two given nodes of a Binary Tree
+Min distance between two given nodes of a Binary Tree-Lowest Common Ancestor
 
   class GfG {
     int findDist(Node root, int a, int b) {
