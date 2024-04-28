@@ -61,91 +61,84 @@ words[i].length <= maxWidth
 
 
 
-lass Solution {
+class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
-        int n=words.length;
-        List<String> ans = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        int countWidth=0;
-        int prev_idx=0;
+        int wordCount = words.length;
+        List<String> justifiedLines = new ArrayList<>();
+        StringBuilder lineBuilder = new StringBuilder();
+        int lineWidth = 0;//current line width
+        int prevIndex = 0;//prevIndex until words were inserted
 
+        for (int i = 0; i < wordCount; i++) {
+            int wordWidth = words[i].length();
+            wordWidth++;
 
-        for(int i=0;i<n;i++){
+            if (lineWidth + wordWidth - 1 > maxWidth) {
+                lineWidth--;
 
-            int width=words[i].length();
-            width++;
+                int extraSpaceWidth = maxWidth - lineWidth + (i - prevIndex - 1); 
 
-            if(countWidth+width-1>maxWidth){
-                //System.out.println("countWidth:"+countWidth);
-                countWidth--;
-                
-                int addWidth=maxWidth-countWidth+(i-prev_idx-1);
-                //System.out.println(addWidth);
+                int individualSpaceWidth = 0;
+                int remainingSpace = 0;
 
-                int individualWidth=0;
-                int inidividualRem=0;
-
-                if((i-prev_idx-1)!=0){
-                    individualWidth=addWidth/(i-prev_idx-1);
-                    inidividualRem=addWidth%(i-prev_idx-1);
+                //get how much spaces present inbetween words,not handeling for last word
+                if ((i - prevIndex - 1) != 0) {
+                    individualSpaceWidth = extraSpaceWidth / (i - prevIndex - 1);
+                    remainingSpace = extraSpaceWidth % (i - prevIndex - 1);
                 }
-                
-                //System.out.println(individualWidth+" "+inidividualRem);
 
-                for(int j=prev_idx;j<i;j++){
-                    sb.append(words[j]);
+                //inserting the words with space
+                for (int j = prevIndex; j < i; j++) {
+                    lineBuilder.append(words[j]);
 
-                    int temp=0;
-                    if(i-1!=j)temp=individualWidth;
+                    //after last index one should not put space
+                    int tempSpace = 0;
+                    if (i - 1 != j) tempSpace = individualSpaceWidth;
 
-                    while(temp>0){
-                        sb.append(" ");
-                        temp--;
+                    while (tempSpace > 0) {
+                        lineBuilder.append(" ");
+                        tempSpace--;
                     }
-                    if(inidividualRem!=0){
-                        sb.append(" ");
-                        inidividualRem--;
+                    if (remainingSpace != 0) {
+                        lineBuilder.append(" ");
+                        remainingSpace--;
                     }
                 }
-                
-                if(i-prev_idx-1==0)inidividualRem=addWidth;
-                while(inidividualRem>0){
-                    sb.append(" ");
-                    inidividualRem--;
+
+                //in case of one word only, word length is 15 and line length is 17 then insert 2 extra spaces
+                if (i - prevIndex - 1 == 0) remainingSpace = extraSpaceWidth;
+                while (remainingSpace > 0) {
+                    lineBuilder.append(" ");
+                    remainingSpace--;
                 }
-                
-                ans.add(sb.toString());
 
-                sb.delete(0,sb.length());
+                justifiedLines.add(lineBuilder.toString());
 
-                countWidth=width;
-                prev_idx=i;
+                lineBuilder.delete(0, lineBuilder.length());
 
+                //assigning the remaining to the next line.
+                lineWidth = wordWidth;
+                prevIndex = i;
+            } else {
+                lineWidth += wordWidth;
             }
-            else{
-                countWidth+=width;
-            }
-
-            
         }
-        
+        //repeating the same thing for last line.
+        lineWidth = 0;
+        for (int j = prevIndex; j < wordCount; j++) {
+            lineBuilder.append(words[j]);
+            lineWidth += words[j].length();
 
-        //
-        countWidth=0;
-        for(int j=prev_idx;j<n;j++){
-            sb.append(words[j]);
-            countWidth+=words[j].length();
+            if (lineWidth < maxWidth)
+                lineBuilder.append(" ");
 
-            if(countWidth<maxWidth)
-                sb.append(" ");    
-
-            countWidth++;        
+            lineWidth++;
         }
-        while(sb.length()<maxWidth){
-            sb.append(" ");
+        while (lineBuilder.length() < maxWidth) {
+            lineBuilder.append(" ");
         }
-        ans.add(sb.toString());
+        justifiedLines.add(lineBuilder.toString());
 
-        return ans;
+        return justifiedLines;
     }
 }
