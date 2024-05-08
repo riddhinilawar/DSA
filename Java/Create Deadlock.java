@@ -1,7 +1,8 @@
 Here's a basic Java code example illustrating this scenario:
 
 java
-Copy code
+nested synchronization is done
+    
 public class DeadlockExample {
     private static Object resource1 = new Object();
     private static Object resource2 = new Object();
