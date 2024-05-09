@@ -81,7 +81,7 @@ public class ImplementQueueUsingStack2 {
 }
 
 
-=========================================================================================
+===========================================through recursion get the last value and return==============================================
 
 public class QueueUsingSingleStack {
  
@@ -120,3 +120,42 @@ public class QueueUsingSingleStack {
  
 }
 has context menu
+=======================================using single stack==========================
+However, note that removing elements from the middle of a stack (removeElementAt(0))
+is less efficient than using two stacks for queue operations. 
+This optimization sacrifices some efficiency for space savings.
+	
+import java.util.Stack;
+
+class MyQueue {
+    private Stack<Integer> stack;
+
+    public MyQueue() {
+        stack = new Stack<>();
+    }
+
+    public void enqueue(int x) {
+        stack.push(x);
+    }
+
+    public int dequeue() {
+        if (stack.isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        int front = peek();
+        stack.removeElementAt(0); // Remove the element at index 0 (top of the stack)
+        return front;
+    }
+
+    public int peek() {
+        if (stack.isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        return stack.get(0); // Get the element at index 0 (top of the stack)
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+}
+
